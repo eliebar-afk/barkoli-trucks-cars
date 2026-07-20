@@ -7,9 +7,7 @@
 <meta name="description" id="pageDescription" content="Barkoli Trucks & Cars — professional auto repair and towing services. Get an instant towing quote via WhatsApp.">
 <link rel="icon" type="image/png" href="assets/favicon.png">
 <link rel="apple-touch-icon" href="assets/favicon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Oswald:wght@500;600;700&family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="assets/fonts/fonts.css" rel="stylesheet">
 <style>
   :root{
     --gold: #d4af37;
@@ -519,6 +517,10 @@
   footer .container{ display:flex; flex-direction:column; align-items:center; gap:18px; }
   footer .footer-logo{ height:34px; width:auto; opacity:0.9; }
   footer span.gold-text{ font-weight:600; }
+  .footer-legal{ display:flex; gap:10px; align-items:center; font-size:0.8rem; }
+  .footer-legal a{ color:#7d7863; text-decoration:none; }
+  .footer-legal a:hover{ color: var(--gold-light); }
+  .footer-legal span{ color:#4a4638; }
 
   /* ---------- FLOATING WHATSAPP ---------- */
   .float-wa{
@@ -941,6 +943,11 @@
   <div class="container">
     <img src="assets/logo-full.png" alt="Barkoli Trucks & Cars" class="footer-logo">
     <div>&copy; <span id="year"></span> <span class="gold-text">Barkoli Trucks &amp; Cars</span>. <span data-i18n="footer.text">All rights reserved.</span></div>
+    <div class="footer-legal">
+      <a href="impressum.html" data-i18n="footer.imprint">Legal Notice</a>
+      <span>&middot;</span>
+      <a href="datenschutz.html" data-i18n="footer.privacy">Privacy Policy</a>
+    </div>
   </div>
 </footer>
 
@@ -1007,7 +1014,7 @@
         chatBtn:"Chat on WhatsApp", callBtn:"Call Us", findUs:"Find Us",
         findUsText:"Prefer to message us directly? Use the towing quote form above for an instant distance estimate, or tap \"Chat on WhatsApp\" for general questions, appointment booking, or repair estimates."
       },
-      footer: { text:"All rights reserved." },
+      footer: { text:"All rights reserved.", imprint:"Legal Notice", privacy:"Privacy Policy" },
       whatsappDefault: "Hello Barkoli Trucks & Cars, I'd like some help.",
       msg: { greeting:"Hello Barkoli Trucks & Cars, I'd like a towing quote:", name:"Name", phone:"Phone", from:"From", to:"To", distance:"Estimated distance", distanceUnit:"straight-line", starts:"Does the car start", startsYes:"Yes", startsNo:"No", vehicleType:"Vehicle type", vehicleModel:"Vehicle model", weight:"Approximate weight", weightUnit:"kg", closing:"Please confirm the price and ETA. Thank you!" }
     },
@@ -1061,7 +1068,7 @@
         chatBtn:"Auf WhatsApp chatten", callBtn:"Anrufen", findUs:"So finden Sie uns",
         findUsText:"Möchten Sie uns lieber direkt schreiben? Nutzen Sie oben das Abschleppformular für eine sofortige Entfernungsschätzung oder tippen Sie auf „Auf WhatsApp chatten“ für allgemeine Fragen, Terminbuchungen oder Reparaturkostenvoranschläge."
       },
-      footer: { text:"Alle Rechte vorbehalten." },
+      footer: { text:"Alle Rechte vorbehalten.", imprint:"Impressum", privacy:"Datenschutz" },
       whatsappDefault: "Hallo Barkoli Trucks & Cars, ich benötige Hilfe.",
       msg: { greeting:"Hallo Barkoli Trucks & Cars, ich möchte ein Abschleppangebot:", name:"Name", phone:"Telefon", from:"Von", to:"Nach", distance:"Geschätzte Entfernung", distanceUnit:"Luftlinie", starts:"Springt das Auto an", startsYes:"Ja", startsNo:"Nein", vehicleType:"Fahrzeugtyp", vehicleModel:"Fahrzeugmodell", weight:"Ungefähres Gewicht", weightUnit:"kg", closing:"Bitte bestätigen Sie den Preis und die voraussichtliche Ankunftszeit. Vielen Dank!" }
     },
@@ -1115,7 +1122,7 @@
         chatBtn:"Chat via WhatsApp", callBtn:"Bel ons", findUs:"Vind ons",
         findUsText:"Liever direct een bericht sturen? Gebruik hierboven het sleepofferteformulier voor een directe afstandsschatting, of tik op \"Chat via WhatsApp\" voor algemene vragen, het boeken van een afspraak of reparatiekostenramingen."
       },
-      footer: { text:"Alle rechten voorbehouden." },
+      footer: { text:"Alle rechten voorbehouden.", imprint:"Colofon", privacy:"Privacybeleid" },
       whatsappDefault: "Hallo Barkoli Trucks & Cars, ik heb hulp nodig.",
       msg: { greeting:"Hallo Barkoli Trucks & Cars, ik wil graag een sleepofferte:", name:"Naam", phone:"Telefoon", from:"Van", to:"Naar", distance:"Geschatte afstand", distanceUnit:"hemelsbreed", starts:"Start de auto", startsYes:"Ja", startsNo:"Nee", vehicleType:"Voertuigtype", vehicleModel:"Voertuigmodel", weight:"Geschat gewicht", weightUnit:"kg", closing:"Bevestig de prijs en aankomsttijd. Bedankt!" }
     },
@@ -1169,7 +1176,7 @@
         chatBtn:"تواصل عبر واتساب", callBtn:"اتصل بنا", findUs:"موقعنا",
         findUsText:"تفضّل التواصل معنا مباشرة؟ استخدم نموذج طلب السحب أعلاه للحصول على تقدير فوري للمسافة، أو اضغط على \"تواصل عبر واتساب\" للأسئلة العامة أو حجز موعد أو تقدير تكلفة الإصلاح."
       },
-      footer: { text:"جميع الحقوق محفوظة." },
+      footer: { text:"جميع الحقوق محفوظة.", imprint:"البيانات القانونية", privacy:"سياسة الخصوصية" },
       whatsappDefault: "مرحبًا Barkoli Trucks & Cars، أحتاج إلى مساعدة.",
       msg: { greeting:"مرحبًا Barkoli Trucks & Cars، أرغب في الحصول على عرض سحب:", name:"الاسم", phone:"الهاتف", from:"من", to:"إلى", distance:"المسافة المقدّرة", distanceUnit:"خط مستقيم", starts:"هل تعمل السيارة", startsYes:"نعم", startsNo:"لا", vehicleType:"نوع المركبة", vehicleModel:"طراز المركبة", weight:"الوزن التقريبي", weightUnit:"كجم", closing:"يرجى تأكيد السعر ووقت الوصول المتوقع. شكرًا لكم!" }
     }
