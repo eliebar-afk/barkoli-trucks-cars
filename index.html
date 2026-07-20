@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Barkoli Trucks &amp; Cars | Auto Repair &amp; Towing</title>
-<meta name="description" content="Barkoli Trucks & Cars — professional auto repair and towing services. Get an instant towing quote via WhatsApp.">
+<title id="pageTitle">Barkoli Trucks &amp; Cars | Auto Repair &amp; Towing</title>
+<meta name="description" id="pageDescription" content="Barkoli Trucks & Cars — professional auto repair and towing services. Get an instant towing quote via WhatsApp.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Oswald:wght@500;600;700&family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root{
     --gold: #d4af37;
@@ -134,6 +134,56 @@
     display:none; flex-direction:column; gap:5px; cursor:pointer; background:none; border:none;
   }
   .burger span{ width:26px; height:2px; background: var(--gold); display:block; }
+
+  /* ---------- LANGUAGE SWITCH ---------- */
+  .lang-switch{ position:relative; }
+  .lang-btn{
+    display:flex; align-items:center; gap:7px;
+    padding:9px 14px;
+    border-radius:50px;
+    border:1px solid var(--border-gold);
+    background:transparent;
+    color: var(--gold-light);
+    font-family:'Poppins',sans-serif;
+    font-size:0.85rem;
+    font-weight:600;
+    cursor:pointer;
+    transition: background .2s ease, border-color .2s ease;
+  }
+  .lang-btn:hover{ background: rgba(212,175,55,0.08); border-color: var(--gold); }
+  .lang-btn svg{ width:16px; height:16px; stroke: var(--gold); flex-shrink:0; }
+  .lang-btn .caret{ width:10px; height:10px; stroke: var(--gold-light); transition: transform .2s ease; }
+  .lang-btn.open .caret{ transform: rotate(180deg); }
+  .lang-menu{
+    position:absolute;
+    top:calc(100% + 8px);
+    right:0;
+    min-width:170px;
+    background:#141414;
+    border:1px solid var(--border-gold);
+    border-radius:12px;
+    padding:6px;
+    z-index:1100;
+    display:none;
+    box-shadow: 0 16px 40px rgba(0,0,0,0.6);
+  }
+  .lang-menu.open{ display:block; }
+  .lang-menu button{
+    width:100%;
+    display:flex; align-items:center; gap:10px;
+    padding:10px 12px;
+    border-radius:8px;
+    border:none;
+    background:transparent;
+    color:#ddd6c4;
+    font-family:'Poppins',sans-serif;
+    font-size:0.88rem;
+    cursor:pointer;
+    text-align:left;
+  }
+  .lang-menu button:hover{ background: rgba(212,175,55,0.1); color: var(--gold-light); }
+  .lang-menu button.active{ background: rgba(212,175,55,0.14); color: var(--gold-light); font-weight:600; }
+  .lang-menu button .flag{ font-size:1.1rem; line-height:1; }
 
   /* ---------- HERO ---------- */
   .hero{
@@ -477,6 +527,22 @@
   .float-wa:hover{ transform: scale(1.08); }
   .float-wa svg{ width:30px; height:30px; fill:#fff; }
 
+  /* ---------- RTL / ARABIC ---------- */
+  html[lang="ar"] body{ font-family:'Cairo','Poppins',sans-serif; }
+  html[lang="ar"] h1, html[lang="ar"] h2, html[lang="ar"] h3, html[lang="ar"] h4,
+  html[lang="ar"] .brand-name{ font-family:'Cairo',sans-serif; }
+  html[lang="ar"] *{ letter-spacing:0 !important; }
+  html[dir="rtl"] .lang-menu{ right:auto; left:0; }
+  html[dir="rtl"] .lang-menu button{ text-align:right; }
+  html[dir="rtl"] .float-wa{ right:auto; left:26px; }
+  html[dir="rtl"] .rtl-flip{ display:inline-block; transform: scaleX(-1); }
+  html[dir="rtl"] .field select{
+    background-position: left 14px center;
+    padding-left:40px; padding-right:16px;
+  }
+  html[dir="rtl"] .hours-table td:last-child{ text-align:left; }
+  html[dir="rtl"] nav a::after{ left:auto; right:0; }
+
   /* ---------- RESPONSIVE ---------- */
   @media (max-width: 960px){
     .hero-inner{ grid-template-columns:1fr; }
@@ -492,6 +558,8 @@
     nav ul li a{ display:block; padding:16px 0; }
     .nav-cta .btn span.txt{ display:none; }
     .burger{ display:flex; }
+    .lang-btn span.lang-label{ display:none; }
+    .lang-btn{ padding:9px 10px; }
     .form-grid{ grid-template-columns:1fr; }
     .services-grid{ grid-template-columns: 1fr 1fr; }
     .gallery-grid{ grid-template-columns: repeat(2, 1fr); }
@@ -529,20 +597,33 @@
       </div>
       <div>
         <div class="brand-name">BARKOLI</div>
-        <div class="brand-sub">Trucks &amp; Cars</div>
+        <div class="brand-sub" data-i18n="brand.sub">Trucks &amp; Cars</div>
       </div>
     </div>
     <nav id="mainNav">
       <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#quote">Get a Quote</a></li>
-        <li><a href="#gallery">Gallery</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="#home" data-i18n="nav.home">Home</a></li>
+        <li><a href="#services" data-i18n="nav.services">Services</a></li>
+        <li><a href="#quote" data-i18n="nav.quote">Get a Quote</a></li>
+        <li><a href="#gallery" data-i18n="nav.gallery">Gallery</a></li>
+        <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
       </ul>
     </nav>
     <div class="nav-cta">
-      <a href="#quote" class="btn btn-primary"><span class="txt">Towing Quote</span> →</a>
+      <a href="#quote" class="btn btn-primary"><span class="txt" data-i18n="nav.ctaQuote">Towing Quote</span> <span class="rtl-flip">→</span></a>
+      <div class="lang-switch">
+        <button class="lang-btn" id="langBtn" aria-haspopup="true" aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18" stroke-linecap="round"/></svg>
+          <span class="lang-label" id="langBtnLabel">EN</span>
+          <svg class="caret" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M6 9l6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="lang-menu" id="langMenu">
+          <button type="button" data-lang="en"><span class="flag">🇬🇧</span> English</button>
+          <button type="button" data-lang="de"><span class="flag">🇩🇪</span> Deutsch</button>
+          <button type="button" data-lang="nl"><span class="flag">🇳🇱</span> Nederlands</button>
+          <button type="button" data-lang="ar"><span class="flag">🇸🇦</span> العربية</button>
+        </div>
+      </div>
       <button class="burger" id="burgerBtn" aria-label="Toggle menu">
         <span></span><span></span><span></span>
       </button>
@@ -569,33 +650,33 @@
           <circle cx="16.5" cy="17" r="1.6"/>
         </svg>
       </div>
-      <h1>BARKOLI <span class="gold-text">TRUCKS &amp; CARS</span></h1>
-      <div class="hero-tagline">Reliable Auto Repair &amp; 24/7 Towing You Can Trust</div>
-      <p class="desc">From brake jobs to breakdowns on the highway — our certified mechanics and towing crew keep you moving. Fast response, fair pricing, honest work.</p>
+      <h1>BARKOLI <span class="gold-text" data-i18n="hero.titleSpan">TRUCKS &amp; CARS</span></h1>
+      <div class="hero-tagline" data-i18n="hero.tagline">Reliable Auto Repair &amp; 24/7 Towing You Can Trust</div>
+      <p class="desc" data-i18n="hero.desc">From brake jobs to breakdowns on the highway — our certified mechanics and towing crew keep you moving. Fast response, fair pricing, honest work.</p>
       <div class="hero-actions">
-        <a href="#quote" class="btn btn-primary">Get a Towing Quote</a>
-        <a href="#services" class="btn btn-outline">Our Services</a>
+        <a href="#quote" class="btn btn-primary" data-i18n="hero.ctaQuote">Get a Towing Quote</a>
+        <a href="#services" class="btn btn-outline" data-i18n="hero.ctaServices">Our Services</a>
       </div>
       <div class="hero-badges">
-        <div class="hero-badge"><b>24/7</b><span>Towing Response</span></div>
-        <div class="hero-badge"><b>15+</b><span>Years Experience</span></div>
-        <div class="hero-badge"><b>100%</b><span>Certified Mechanics</span></div>
+        <div class="hero-badge"><b>24/7</b><span data-i18n="hero.badge247">Towing Response</span></div>
+        <div class="hero-badge"><b>15+</b><span data-i18n="hero.badge15">Years Experience</span></div>
+        <div class="hero-badge"><b>100%</b><span data-i18n="hero.badge100">Certified Mechanics</span></div>
       </div>
     </div>
     <div class="hero-visual">
-      <h3>Why drivers choose Barkoli</h3>
-      <p>A garage built on speed, transparency and craftsmanship.</p>
+      <h3 data-i18n="heroVisual.title">Why drivers choose Barkoli</h3>
+      <p data-i18n="heroVisual.sub">A garage built on speed, transparency and craftsmanship.</p>
       <div class="mini-row">
         <div class="mini-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z" stroke-linejoin="round"/></svg></div>
-        <div><b>Licensed &amp; Insured</b><span>Full workshop compliance</span></div>
+        <div><b data-i18n="heroVisual.row1Title">Licensed &amp; Insured</b><span data-i18n="heroVisual.row1Sub">Full workshop compliance</span></div>
       </div>
       <div class="mini-row">
         <div class="mini-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 8v4l3 3" stroke-linecap="round"/><circle cx="12" cy="12" r="9"/></svg></div>
-        <div><b>Fast Dispatch</b><span>Towing arrives within minutes</span></div>
+        <div><b data-i18n="heroVisual.row2Title">Fast Dispatch</b><span data-i18n="heroVisual.row2Sub">Towing arrives within minutes</span></div>
       </div>
       <div class="mini-row">
         <div class="mini-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M3 12h4l2-5 4 10 2-5h6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div><b>Transparent Pricing</b><span>Instant WhatsApp quotes</span></div>
+        <div><b data-i18n="heroVisual.row3Title">Transparent Pricing</b><span data-i18n="heroVisual.row3Sub">Instant WhatsApp quotes</span></div>
       </div>
     </div>
   </div>
@@ -604,62 +685,62 @@
 <!-- ============ TOWING QUOTE ============ -->
 <section class="section quote-section" id="quote">
   <div class="container">
-    <span class="section-tag">Instant Estimate</span>
-    <h2 class="section-title">Get a Towing Quote in Seconds</h2>
-    <p class="section-sub">Enter your pickup and drop-off locations. We'll estimate the distance and send your request straight to our WhatsApp — no forms, no waiting on hold.</p>
+    <span class="section-tag" data-i18n="quote.tag">Instant Estimate</span>
+    <h2 class="section-title" data-i18n="quote.title">Get a Towing Quote in Seconds</h2>
+    <p class="section-sub" data-i18n="quote.sub">Enter your pickup and drop-off locations. We'll estimate the distance and send your request straight to our WhatsApp — no forms, no waiting on hold.</p>
 
     <div class="quote-card">
       <form id="quoteForm" autocomplete="off">
         <div class="form-grid">
           <div class="field">
-            <label for="fromInput">Tow From</label>
-            <input type="text" id="fromInput" placeholder="Start typing an address or place…">
+            <label for="fromInput" data-i18n="form.fromLabel">Tow From</label>
+            <input type="text" id="fromInput" dir="auto" placeholder="Start typing an address or place…" data-i18n-ph="form.fromPh">
             <div class="autocomplete-list" id="fromList"></div>
           </div>
           <div class="field">
-            <label for="toInput">Tow To</label>
-            <input type="text" id="toInput" placeholder="Start typing an address or place…">
+            <label for="toInput" data-i18n="form.toLabel">Tow To</label>
+            <input type="text" id="toInput" dir="auto" placeholder="Start typing an address or place…" data-i18n-ph="form.toPh">
             <div class="autocomplete-list" id="toList"></div>
           </div>
           <div class="field">
-            <label for="nameInput">Your Name</label>
-            <input type="text" id="nameInput" placeholder="John Doe" required>
+            <label for="nameInput" data-i18n="form.nameLabel">Your Name</label>
+            <input type="text" id="nameInput" dir="auto" placeholder="John Doe" data-i18n-ph="form.namePh" required>
           </div>
           <div class="field">
-            <label for="phoneInput">Your Phone Number</label>
-            <input type="tel" id="phoneInput" placeholder="+49 151 23456789" required>
+            <label for="phoneInput" data-i18n="form.phoneLabel">Your Phone Number</label>
+            <input type="tel" id="phoneInput" dir="ltr" placeholder="+49 151 23456789" data-i18n-ph="form.phonePh" required>
           </div>
           <div class="field">
-            <label for="vehicleTypeInput">Vehicle Type</label>
+            <label for="vehicleTypeInput" data-i18n="form.vehicleTypeLabel">Vehicle Type</label>
             <select id="vehicleTypeInput">
-              <option value="">Select vehicle type…</option>
-              <option value="Car / Sedan">Car / Sedan</option>
-              <option value="SUV">SUV</option>
-              <option value="Van">Van</option>
-              <option value="Pickup Truck">Pickup Truck</option>
-              <option value="Light Truck">Light Truck</option>
-              <option value="Motorcycle">Motorcycle</option>
-              <option value="Other">Other</option>
+              <option value="" data-i18n="form.vehicleTypePh">Select vehicle type…</option>
+              <option value="car" data-i18n="vehicleTypes.car">Car / Sedan</option>
+              <option value="suv" data-i18n="vehicleTypes.suv">SUV</option>
+              <option value="van" data-i18n="vehicleTypes.van">Van</option>
+              <option value="pickup" data-i18n="vehicleTypes.pickup">Pickup Truck</option>
+              <option value="lightTruck" data-i18n="vehicleTypes.lightTruck">Light Truck</option>
+              <option value="motorcycle" data-i18n="vehicleTypes.motorcycle">Motorcycle</option>
+              <option value="other" data-i18n="vehicleTypes.other">Other</option>
             </select>
           </div>
           <div class="field">
-            <label for="vehicleModelInput">Vehicle Model</label>
-            <input type="text" id="vehicleModelInput" placeholder="e.g. BMW 3 Series">
+            <label for="vehicleModelInput" data-i18n="form.vehicleModelLabel">Vehicle Model</label>
+            <input type="text" id="vehicleModelInput" dir="auto" placeholder="e.g. BMW 3 Series" data-i18n-ph="form.vehicleModelPh">
           </div>
           <div class="field">
-            <label for="weightInput">Approximate Weight (kg) <span class="optional-tag">— optional</span></label>
-            <input type="number" id="weightInput" min="0" step="1" placeholder="e.g. 1500">
+            <label for="weightInput"><span data-i18n="form.weightLabel">Approximate Weight (kg)</span> <span class="optional-tag" data-i18n="form.weightOptional">— optional</span></label>
+            <input type="number" id="weightInput" dir="ltr" min="0" step="1" placeholder="e.g. 1500" data-i18n-ph="form.weightPh">
           </div>
           <div class="field full">
-            <label>Does the Car Start?</label>
+            <label data-i18n="form.startsLabel">Does the Car Start?</label>
             <div class="toggle-group" id="startsToggle">
-              <button type="button" class="toggle-btn" data-value="Yes">
+              <button type="button" class="toggle-btn" data-value="yes">
                 <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                Yes, it starts
+                <span data-i18n="form.startsYes">Yes, it starts</span>
               </button>
-              <button type="button" class="toggle-btn" data-value="No">
+              <button type="button" class="toggle-btn" data-value="no">
                 <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M6 6l12 12M18 6L6 18" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                No, it doesn't start
+                <span data-i18n="form.startsNo">No, it doesn't start</span>
               </button>
             </div>
           </div>
@@ -668,19 +749,19 @@
         <div class="distance-box" id="distanceBox">
           <div>
             <div class="dist-value" id="distValue">0 km</div>
-            <div class="dist-label">Estimated straight-line distance</div>
+            <div class="dist-label" data-i18n="form.distanceLabel">Estimated straight-line distance</div>
           </div>
-          <div class="dist-label" style="max-width:260px;">Actual towing distance may vary slightly based on road routing — final price confirmed by our team on WhatsApp.</div>
+          <div class="dist-label" style="max-width:260px;" data-i18n="form.distanceNote">Actual towing distance may vary slightly based on road routing — final price confirmed by our team on WhatsApp.</div>
         </div>
 
-        <div class="form-error" id="formError">Please select both a "Tow From" and "Tow To" location from the suggestion list, fill in your name and phone number, and let us know if the car starts.</div>
+        <div class="form-error" id="formError" data-i18n="form.error">Please select both a "Tow From" and "Tow To" location from the suggestion list, fill in your name and phone number, and let us know if the car starts.</div>
 
         <div class="form-actions">
           <button type="submit" class="btn btn-whatsapp">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.29-1.39a9.87 9.87 0 0 0 4.75 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2m0 1.8c2.16 0 4.19.84 5.71 2.37a8.03 8.03 0 0 1 2.36 5.73c0 4.46-3.63 8.09-8.08 8.09a8.1 8.1 0 0 1-4.12-1.12l-.3-.17-3.14.82.84-3.06-.19-.32a8.02 8.02 0 0 1-1.24-4.31c0-4.46 3.63-8.03 8.16-8.03M8.53 7.06c-.17 0-.45.06-.68.32-.23.25-.9.87-.9 2.13 0 1.25.92 2.46 1.05 2.63.13.17 1.8 2.88 4.45 3.93 2.2.87 2.65.7 3.13.65.48-.04 1.54-.63 1.76-1.24.22-.6.22-1.12.15-1.23-.06-.11-.24-.17-.5-.3-.26-.13-1.54-.76-1.78-.85-.24-.09-.41-.13-.59.13-.17.26-.67.85-.82 1.02-.15.17-.3.19-.56.06-.26-.13-1.09-.4-2.08-1.28-.77-.68-1.29-1.53-1.44-1.79-.15-.26-.02-.4.11-.53.12-.12.26-.3.39-.45.13-.15.17-.26.26-.43.09-.17.04-.32-.02-.45-.06-.13-.59-1.46-.82-1.99-.21-.51-.43-.45-.59-.46-.15-.01-.32-.01-.49-.01z"/></svg>
-            Send Quote via WhatsApp
+            <span data-i18n="form.submitBtn">Send Quote via WhatsApp</span>
           </button>
-          <div class="form-note">You'll be redirected to WhatsApp with your request pre-filled — just hit send.</div>
+          <div class="form-note" data-i18n="form.note">You'll be redirected to WhatsApp with your request pre-filled — just hit send.</div>
         </div>
       </form>
     </div>
@@ -690,90 +771,90 @@
 <!-- ============ SERVICES ============ -->
 <section class="section" id="services">
   <div class="container">
-    <span class="section-tag">What We Do</span>
-    <h2 class="section-title">Full-Service Auto Repair &amp; Towing</h2>
-    <p class="section-sub">From routine maintenance to roadside emergencies, our team handles cars and trucks of every make and model.</p>
+    <span class="section-tag" data-i18n="services.tag">What We Do</span>
+    <h2 class="section-title" data-i18n="services.title">Full-Service Auto Repair &amp; Towing</h2>
+    <p class="section-sub" data-i18n="services.sub">From routine maintenance to roadside emergencies, our team handles cars and trucks of every make and model.</p>
 
-    <div class="services-subhead">Auto Repair Services</div>
+    <div class="services-subhead" data-i18n="services.autoSubhead">Auto Repair Services</div>
     <div class="services-grid">
       <div class="service-card">
         <div class="service-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="2.5"/><path d="M12 4v2M12 18v2M4 12h2M18 12h2M6.3 6.3l1.4 1.4M16.3 16.3l1.4 1.4M6.3 17.7l1.4-1.4M16.3 7.7l1.4-1.4" stroke-linecap="round"/></svg></div>
-        <h4>Brake Repair &amp; Service</h4>
-        <p>Pad and rotor replacement, brake fluid flush, and full safety inspections.</p>
+        <h4 data-i18n="serviceItems.brakes.title">Brake Repair &amp; Service</h4>
+        <p data-i18n="serviceItems.brakes.desc">Pad and rotor replacement, brake fluid flush, and full safety inspections.</p>
       </div>
       <div class="service-card">
         <div class="service-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M6 3h6l2 3h3a1 1 0 0 1 1 1v3h-1" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 10h9v10H4a1 1 0 0 1-1-1v-8a1 1 0 0 1 1-1z"/><path d="M13 13h4a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-4"/></svg></div>
-        <h4>Oil Change &amp; Fluids</h4>
-        <p>Full synthetic, conventional oil changes plus coolant, transmission and brake fluid top-ups.</p>
+        <h4 data-i18n="serviceItems.oil.title">Oil Change &amp; Fluids</h4>
+        <p data-i18n="serviceItems.oil.desc">Full synthetic, conventional oil changes plus coolant, transmission and brake fluid top-ups.</p>
       </div>
       <div class="service-card">
         <div class="service-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 3v4M15 3v4M4 8h16v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8z"/><path d="M8 13l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <h4>Computer Diagnostics</h4>
-        <p>Advanced scan-tool diagnostics to pinpoint check-engine lights and electrical faults fast.</p>
+        <h4 data-i18n="serviceItems.diagnostics.title">Computer Diagnostics</h4>
+        <p data-i18n="serviceItems.diagnostics.desc">Advanced scan-tool diagnostics to pinpoint check-engine lights and electrical faults fast.</p>
       </div>
       <div class="service-card">
         <div class="service-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 2a5 5 0 0 0-5 5c0 3 5 9 5 9s5-6 5-9a5 5 0 0 0-5-5z"/><circle cx="12" cy="7" r="2"/><path d="M6 18h12l1 4H5l1-4z"/></svg></div>
-        <h4>Engine Repair &amp; Overhaul</h4>
-        <p>From timing belts to full rebuilds — restoring performance and reliability.</p>
+        <h4 data-i18n="serviceItems.engine.title">Engine Repair &amp; Overhaul</h4>
+        <p data-i18n="serviceItems.engine.desc">From timing belts to full rebuilds — restoring performance and reliability.</p>
       </div>
       <div class="service-card">
         <div class="service-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="4" y="7" width="16" height="12" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M4 13h16" stroke-linecap="round"/></svg></div>
-        <h4>Transmission Service</h4>
-        <p>Automatic and manual transmission repair, fluid service, and clutch replacement.</p>
+        <h4 data-i18n="serviceItems.transmission.title">Transmission Service</h4>
+        <p data-i18n="serviceItems.transmission.desc">Automatic and manual transmission repair, fluid service, and clutch replacement.</p>
       </div>
       <div class="service-card">
         <div class="service-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4 12a8 8 0 0 1 14.5-4.5M20 12a8 8 0 0 1-14.5 4.5" stroke-linecap="round"/><path d="M14 4h4.5V8M10 20H5.5V16" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <h4>Tire &amp; Wheel Alignment</h4>
-        <p>Tire replacement, balancing, rotation and precision wheel alignment.</p>
+        <h4 data-i18n="serviceItems.tires.title">Tire &amp; Wheel Alignment</h4>
+        <p data-i18n="serviceItems.tires.desc">Tire replacement, balancing, rotation and precision wheel alignment.</p>
       </div>
       <div class="service-card">
         <div class="service-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M3 10h18M3 14h18" stroke-linecap="round"/><rect x="3" y="6" width="18" height="12" rx="2"/></svg></div>
-        <h4>Battery &amp; Electrical</h4>
-        <p>Battery testing and replacement, alternator and starter repair, wiring diagnostics.</p>
+        <h4 data-i18n="serviceItems.battery.title">Battery &amp; Electrical</h4>
+        <p data-i18n="serviceItems.battery.desc">Battery testing and replacement, alternator and starter repair, wiring diagnostics.</p>
       </div>
       <div class="service-card">
         <div class="service-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M6 18h.01M18 18h.01M4 18l-1-6 2-5h9l4 5v6h-2M4 18h2M8 18h8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="7" cy="18" r="1.8"/><circle cx="17" cy="18" r="1.8"/></svg></div>
-        <h4>Suspension &amp; Steering</h4>
-        <p>Shocks, struts, ball joints and steering component repair for a smooth, safe ride.</p>
+        <h4 data-i18n="serviceItems.suspension.title">Suspension &amp; Steering</h4>
+        <p data-i18n="serviceItems.suspension.desc">Shocks, struts, ball joints and steering component repair for a smooth, safe ride.</p>
       </div>
       <div class="service-card">
         <div class="service-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 3v2M12 19v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M3 12h2M19 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" stroke-linecap="round"/><circle cx="12" cy="12" r="4"/></svg></div>
-        <h4>AC &amp; Heating Repair</h4>
-        <p>Climate control diagnostics, refrigerant recharge, and compressor replacement.</p>
+        <h4 data-i18n="serviceItems.ac.title">AC &amp; Heating Repair</h4>
+        <p data-i18n="serviceItems.ac.desc">Climate control diagnostics, refrigerant recharge, and compressor replacement.</p>
       </div>
     </div>
 
-    <div class="services-subhead">Towing &amp; Roadside Services</div>
+    <div class="services-subhead" data-i18n="services.towingSubhead">Towing &amp; Roadside Services</div>
     <div class="services-grid">
       <div class="service-card">
         <div class="service-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M3 13l1.5-4.5A2 2 0 0 1 6.4 7h11.2a2 2 0 0 1 1.9 1.5L21 13H3z" stroke-linejoin="round"/><path d="M3 13h18v3a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-3z"/><circle cx="7.5" cy="17" r="1.6"/><circle cx="16.5" cy="17" r="1.6"/></svg></div>
-        <h4>Flatbed &amp; Truck Towing</h4>
-        <p>Safe transport for cars, SUVs and light trucks on our flatbed fleet.</p>
+        <h4 data-i18n="serviceItems.flatbed.title">Flatbed &amp; Truck Towing</h4>
+        <p data-i18n="serviceItems.flatbed.desc">Safe transport for cars, SUVs and light trucks on our flatbed fleet.</p>
       </div>
       <div class="service-card">
         <div class="service-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 2a10 10 0 1 0 10 10" stroke-linecap="round"/><path d="M12 6v6l4 2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <h4>24/7 Emergency Towing</h4>
-        <p>Day or night, our dispatch team is ready to get you off the road safely.</p>
+        <h4 data-i18n="serviceItems.emergency.title">24/7 Emergency Towing</h4>
+        <p data-i18n="serviceItems.emergency.desc">Day or night, our dispatch team is ready to get you off the road safely.</p>
       </div>
       <div class="service-card">
         <div class="service-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="5" y="9" width="14" height="9" rx="1.5"/><path d="M9 9V6a3 3 0 0 1 6 0v3" stroke-linecap="round"/></svg></div>
-        <h4>Lockout Assistance</h4>
-        <p>Locked out? We'll get your vehicle open quickly without any damage.</p>
+        <h4 data-i18n="serviceItems.lockout.title">Lockout Assistance</h4>
+        <p data-i18n="serviceItems.lockout.desc">Locked out? We'll get your vehicle open quickly without any damage.</p>
       </div>
       <div class="service-card">
         <div class="service-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 7h6l1 3H8l1-3z"/><path d="M4 18v-5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v5" stroke-linecap="round"/><circle cx="7.5" cy="18" r="1.6"/><circle cx="16.5" cy="18" r="1.6"/></svg></div>
-        <h4>Jump Start &amp; Battery</h4>
-        <p>Dead battery on the road? We'll jump-start or swap it on the spot.</p>
+        <h4 data-i18n="serviceItems.jumpstart.title">Jump Start &amp; Battery</h4>
+        <p data-i18n="serviceItems.jumpstart.desc">Dead battery on the road? We'll jump-start or swap it on the spot.</p>
       </div>
       <div class="service-card">
         <div class="service-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8" stroke-linecap="round"/></svg></div>
-        <h4>Flat Tire Change</h4>
-        <p>Quick roadside tire changes to get you safely back on your way.</p>
+        <h4 data-i18n="serviceItems.flattire.title">Flat Tire Change</h4>
+        <p data-i18n="serviceItems.flattire.desc">Quick roadside tire changes to get you safely back on your way.</p>
       </div>
       <div class="service-card">
         <div class="service-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M3 12l4-8h10l4 8-4 8H7l-4-8z" stroke-linejoin="round"/></svg></div>
-        <h4>Accident Recovery</h4>
-        <p>Safe, insurance-friendly recovery and transport following a collision.</p>
+        <h4 data-i18n="serviceItems.accident.title">Accident Recovery</h4>
+        <p data-i18n="serviceItems.accident.desc">Safe, insurance-friendly recovery and transport following a collision.</p>
       </div>
     </div>
   </div>
@@ -782,38 +863,38 @@
 <!-- ============ GALLERY ============ -->
 <section class="section" id="gallery">
   <div class="container">
-    <span class="section-tag">Our Work</span>
-    <h2 class="section-title">Gallery</h2>
-    <p class="section-sub">A look inside our workshop and towing operations. (Placeholder tiles — replace with real photos of the shop, fleet and completed jobs.)</p>
+    <span class="section-tag" data-i18n="gallery.tag">Our Work</span>
+    <h2 class="section-title" data-i18n="gallery.title">Gallery</h2>
+    <p class="section-sub" data-i18n="gallery.sub">A look inside our workshop and towing operations. (Placeholder tiles — replace with real photos of the shop, fleet and completed jobs.)</p>
 
     <div class="gallery-grid">
       <div class="gallery-item wide">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M3 13l1.5-4.5A2 2 0 0 1 6.4 7h11.2a2 2 0 0 1 1.9 1.5L21 13H3z" stroke-linejoin="round"/><path d="M3 13h18v3a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-3z"/><circle cx="7.5" cy="17" r="1.6"/><circle cx="16.5" cy="17" r="1.6"/></svg>
-        <span>Towing Fleet</span>
+        <span data-i18n="gallery.towingFleet">Towing Fleet</span>
       </div>
       <div class="gallery-item">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M7 21h10M12 18v3" stroke-linecap="round"/></svg>
-        <span>Workshop Bay</span>
+        <span data-i18n="gallery.workshopBay">Workshop Bay</span>
       </div>
       <div class="gallery-item">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="2.5"/><path d="M12 4v2M12 18v2M4 12h2M18 12h2" stroke-linecap="round"/></svg>
-        <span>Brake Service</span>
+        <span data-i18n="gallery.brakeService">Brake Service</span>
       </div>
       <div class="gallery-item">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M12 2a5 5 0 0 0-5 5c0 3 5 9 5 9s5-6 5-9a5 5 0 0 0-5-5z"/><circle cx="12" cy="7" r="2"/></svg>
-        <span>Engine Repair</span>
+        <span data-i18n="gallery.engineRepair">Engine Repair</span>
       </div>
       <div class="gallery-item">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><rect x="4" y="7" width="16" height="12" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" stroke-linecap="round"/></svg>
-        <span>Diagnostics</span>
+        <span data-i18n="gallery.diagnostics">Diagnostics</span>
       </div>
       <div class="gallery-item">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M4 12a8 8 0 0 1 14.5-4.5M20 12a8 8 0 0 1-14.5 4.5" stroke-linecap="round"/></svg>
-        <span>Wheel Alignment</span>
+        <span data-i18n="gallery.wheelAlignment">Wheel Alignment</span>
       </div>
       <div class="gallery-item wide">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M3 12l4-8h10l4 8-4 8H7l-4-8z" stroke-linejoin="round"/></svg>
-        <span>Accident Recovery</span>
+        <span data-i18n="gallery.accidentRecovery">Accident Recovery</span>
       </div>
     </div>
   </div>
@@ -822,54 +903,55 @@
 <!-- ============ CONTACT ============ -->
 <section class="section" id="contact">
   <div class="container">
-    <span class="section-tag">Get In Touch</span>
-    <h2 class="section-title">Visit Us or Call for Help</h2>
-    <p class="section-sub">Stuck on the road or need a repair booked in? Reach out any time — our towing line runs 24/7.</p>
+    <span class="section-tag" data-i18n="contact.tag">Get In Touch</span>
+    <h2 class="section-title" data-i18n="contact.title">Visit Us or Call for Help</h2>
+    <p class="section-sub" data-i18n="contact.sub">Stuck on the road or need a repair booked in? Reach out any time — our towing line runs 24/7.</p>
 
     <div class="contact-grid">
       <div class="contact-card">
         <div class="contact-row">
           <div class="mini-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></div>
           <div>
-            <b>Workshop Address</b>
-            <span>Musterstraße 12, 12345 Musterstadt, Germany<br><em style="font-size:0.75rem;color:#7d7863;">(placeholder — update with your real address)</em></span>
+            <b data-i18n="contact.addressLabel">Workshop Address</b>
+            <span data-i18n="contact.addressValue">Musterstraße 12, 12345 Musterstadt, Germany</span><br>
+            <em style="font-size:0.75rem;color:#7d7863;" data-i18n="contact.addressNote">(placeholder — update with your real address)</em>
           </div>
         </div>
         <div class="contact-row">
           <div class="mini-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.5 2.1L8 9.6a16 16 0 0 0 6 6l1.1-1.1a2 2 0 0 1 2.1-.5c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.7 2.3z" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
           <div>
-            <b>Phone / WhatsApp</b>
-            <a class="link" href="https://wa.me/4915259793030" target="_blank" rel="noopener">+49 1525 9793030</a>
+            <b data-i18n="contact.phoneLabel">Phone / WhatsApp</b>
+            <a class="link" dir="ltr" style="display:inline-block;" href="https://wa.me/4915259793030" target="_blank" rel="noopener">+49 1525 9793030</a>
           </div>
         </div>
         <div class="contact-row">
           <div class="mini-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 8h18" stroke-linecap="round"/></svg></div>
           <div style="width:100%;">
-            <b>Opening Hours</b>
+            <b data-i18n="contact.hoursLabel">Opening Hours</b>
             <table class="hours-table">
-              <tr><td>Monday – Friday</td><td>08:00 – 18:00</td></tr>
-              <tr><td>Saturday</td><td>09:00 – 14:00</td></tr>
-              <tr><td>Sunday</td><td>Closed (Workshop)</td></tr>
-              <tr class="emergency"><td>Towing &amp; Roadside</td><td>24/7</td></tr>
+              <tr><td data-i18n="contact.hoursMonFriLabel">Monday – Friday</td><td data-i18n="contact.hoursMonFriValue">08:00 – 18:00</td></tr>
+              <tr><td data-i18n="contact.hoursSatLabel">Saturday</td><td data-i18n="contact.hoursSatValue">09:00 – 14:00</td></tr>
+              <tr><td data-i18n="contact.hoursSunLabel">Sunday</td><td data-i18n="contact.hoursSunValue">Closed (Workshop)</td></tr>
+              <tr class="emergency"><td data-i18n="contact.hoursTowingLabel">Towing &amp; Roadside</td><td data-i18n="contact.hoursTowingValue">24/7</td></tr>
             </table>
           </div>
         </div>
         <div style="margin-top:24px; display:flex; gap:14px; flex-wrap:wrap;">
-          <a href="https://wa.me/4915259793030?text=Hello%20Barkoli%20Trucks%20%26%20Cars%2C%20I%27d%20like%20some%20help." target="_blank" rel="noopener" class="btn btn-whatsapp">
+          <a id="chatWaBtn" href="https://wa.me/4915259793030?text=Hello%20Barkoli%20Trucks%20%26%20Cars%2C%20I%27d%20like%20some%20help." target="_blank" rel="noopener" class="btn btn-whatsapp">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="#fff"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.29-1.39a9.87 9.87 0 0 0 4.75 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2m0 1.8c2.16 0 4.19.84 5.71 2.37a8.03 8.03 0 0 1 2.36 5.73c0 4.46-3.63 8.09-8.08 8.09a8.1 8.1 0 0 1-4.12-1.12l-.3-.17-3.14.82.84-3.06-.19-.32a8.02 8.02 0 0 1-1.24-4.31c0-4.46 3.63-8.03 8.16-8.03"/></svg>
-            Chat on WhatsApp
+            <span data-i18n="contact.chatBtn">Chat on WhatsApp</span>
           </a>
-          <a href="tel:+4915259793030" class="btn btn-outline">Call Us</a>
+          <a href="tel:+4915259793030" class="btn btn-outline" data-i18n="contact.callBtn">Call Us</a>
         </div>
       </div>
 
       <div class="contact-card">
-        <b style="display:block;margin-bottom:14px;">Find Us</b>
+        <b style="display:block;margin-bottom:14px;" data-i18n="contact.findUs">Find Us</b>
         <div class="map-frame">
           <!-- Placeholder map embed — replace the query in the src URL with your real address -->
           <iframe loading="lazy" src="https://www.openstreetmap.org/export/embed.html?bbox=13.35%2C52.48%2C13.45%2C52.53&layer=mapnik" title="Map"></iframe>
         </div>
-        <p style="font-size:0.85rem;color:var(--text-muted);margin-top:16px;">
+        <p style="font-size:0.85rem;color:var(--text-muted);margin-top:16px;" data-i18n="contact.findUsText">
           Prefer to message us directly? Use the towing quote form above for an instant distance estimate, or tap "Chat on WhatsApp" for general questions, appointment booking, or repair estimates.
         </p>
       </div>
@@ -879,11 +961,11 @@
 
 <footer>
   <div class="container">
-    &copy; <span id="year"></span> <span class="gold-text">Barkoli Trucks &amp; Cars</span>. All rights reserved.
+    &copy; <span id="year"></span> <span class="gold-text">Barkoli Trucks &amp; Cars</span>. <span data-i18n="footer.text">All rights reserved.</span>
   </div>
 </footer>
 
-<a href="https://wa.me/4915259793030" target="_blank" rel="noopener" class="float-wa" aria-label="Chat on WhatsApp">
+<a id="floatWaBtn" href="https://wa.me/4915259793030" target="_blank" rel="noopener" class="float-wa" aria-label="Chat on WhatsApp">
   <svg viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.29-1.39a9.87 9.87 0 0 0 4.75 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2m0 1.8c2.16 0 4.19.84 5.71 2.37a8.03 8.03 0 0 1 2.36 5.73c0 4.46-3.63 8.09-8.08 8.09a8.1 8.1 0 0 1-4.12-1.12l-.3-.17-3.14.82.84-3.06-.19-.32a8.02 8.02 0 0 1-1.24-4.31c0-4.46 3.63-8.03 8.16-8.03"/></svg>
 </a>
 
@@ -893,6 +975,312 @@
 
   // ---------- CONFIG ----------
   var WHATSAPP_NUMBER = "4915259793030"; // +49 1525 9793030, formatted for wa.me (no +, no spaces)
+
+  // ---------- I18N ----------
+  var I18N = {
+    en: {
+      meta: { title: "Barkoli Trucks & Cars | Auto Repair & Towing", description: "Barkoli Trucks & Cars — professional auto repair and towing services. Get an instant towing quote via WhatsApp." },
+      nav: { home:"Home", services:"Services", quote:"Get a Quote", gallery:"Gallery", contact:"Contact", ctaQuote:"Towing Quote" },
+      brand: { sub:"Trucks & Cars" },
+      hero: { titleSpan:"TRUCKS & CARS", tagline:"Reliable Auto Repair & 24/7 Towing You Can Trust", desc:"From brake jobs to breakdowns on the highway — our certified mechanics and towing crew keep you moving. Fast response, fair pricing, honest work.", ctaQuote:"Get a Towing Quote", ctaServices:"Our Services", badge247:"Towing Response", badge15:"Years Experience", badge100:"Certified Mechanics" },
+      heroVisual: { title:"Why drivers choose Barkoli", sub:"A garage built on speed, transparency and craftsmanship.", row1Title:"Licensed & Insured", row1Sub:"Full workshop compliance", row2Title:"Fast Dispatch", row2Sub:"Towing arrives within minutes", row3Title:"Transparent Pricing", row3Sub:"Instant WhatsApp quotes" },
+      quote: { tag:"Instant Estimate", title:"Get a Towing Quote in Seconds", sub:"Enter your pickup and drop-off locations. We'll estimate the distance and send your request straight to our WhatsApp — no forms, no waiting on hold." },
+      form: {
+        fromLabel:"Tow From", fromPh:"Start typing an address or place…",
+        toLabel:"Tow To", toPh:"Start typing an address or place…",
+        nameLabel:"Your Name", namePh:"John Doe",
+        phoneLabel:"Your Phone Number", phonePh:"+49 151 23456789",
+        vehicleTypeLabel:"Vehicle Type", vehicleTypePh:"Select vehicle type…",
+        vehicleModelLabel:"Vehicle Model", vehicleModelPh:"e.g. BMW 3 Series",
+        weightLabel:"Approximate Weight (kg)", weightOptional:"— optional", weightPh:"e.g. 1500",
+        startsLabel:"Does the Car Start?", startsYes:"Yes, it starts", startsNo:"No, it doesn't start",
+        distanceLabel:"Estimated straight-line distance",
+        distanceNote:"Actual towing distance may vary slightly based on road routing — final price confirmed by our team on WhatsApp.",
+        error:"Please select both a \"Tow From\" and \"Tow To\" location from the suggestion list, fill in your name and phone number, and let us know if the car starts.",
+        submitBtn:"Send Quote via WhatsApp",
+        note:"You'll be redirected to WhatsApp with your request pre-filled — just hit send."
+      },
+      vehicleTypes: { car:"Car / Sedan", suv:"SUV", van:"Van", pickup:"Pickup Truck", lightTruck:"Light Truck", motorcycle:"Motorcycle", other:"Other" },
+      services: { tag:"What We Do", title:"Full-Service Auto Repair & Towing", sub:"From routine maintenance to roadside emergencies, our team handles cars and trucks of every make and model.", autoSubhead:"Auto Repair Services", towingSubhead:"Towing & Roadside Services" },
+      serviceItems: {
+        brakes:{title:"Brake Repair & Service", desc:"Pad and rotor replacement, brake fluid flush, and full safety inspections."},
+        oil:{title:"Oil Change & Fluids", desc:"Full synthetic, conventional oil changes plus coolant, transmission and brake fluid top-ups."},
+        diagnostics:{title:"Computer Diagnostics", desc:"Advanced scan-tool diagnostics to pinpoint check-engine lights and electrical faults fast."},
+        engine:{title:"Engine Repair & Overhaul", desc:"From timing belts to full rebuilds — restoring performance and reliability."},
+        transmission:{title:"Transmission Service", desc:"Automatic and manual transmission repair, fluid service, and clutch replacement."},
+        tires:{title:"Tire & Wheel Alignment", desc:"Tire replacement, balancing, rotation and precision wheel alignment."},
+        battery:{title:"Battery & Electrical", desc:"Battery testing and replacement, alternator and starter repair, wiring diagnostics."},
+        suspension:{title:"Suspension & Steering", desc:"Shocks, struts, ball joints and steering component repair for a smooth, safe ride."},
+        ac:{title:"AC & Heating Repair", desc:"Climate control diagnostics, refrigerant recharge, and compressor replacement."},
+        flatbed:{title:"Flatbed & Truck Towing", desc:"Safe transport for cars, SUVs and light trucks on our flatbed fleet."},
+        emergency:{title:"24/7 Emergency Towing", desc:"Day or night, our dispatch team is ready to get you off the road safely."},
+        lockout:{title:"Lockout Assistance", desc:"Locked out? We'll get your vehicle open quickly without any damage."},
+        jumpstart:{title:"Jump Start & Battery", desc:"Dead battery on the road? We'll jump-start or swap it on the spot."},
+        flattire:{title:"Flat Tire Change", desc:"Quick roadside tire changes to get you safely back on your way."},
+        accident:{title:"Accident Recovery", desc:"Safe, insurance-friendly recovery and transport following a collision."}
+      },
+      gallery: { tag:"Our Work", title:"Gallery", sub:"A look inside our workshop and towing operations. (Placeholder tiles — replace with real photos of the shop, fleet and completed jobs.)", towingFleet:"Towing Fleet", workshopBay:"Workshop Bay", brakeService:"Brake Service", engineRepair:"Engine Repair", diagnostics:"Diagnostics", wheelAlignment:"Wheel Alignment", accidentRecovery:"Accident Recovery" },
+      contact: {
+        tag:"Get In Touch", title:"Visit Us or Call for Help", sub:"Stuck on the road or need a repair booked in? Reach out any time — our towing line runs 24/7.",
+        addressLabel:"Workshop Address", addressValue:"Musterstraße 12, 12345 Musterstadt, Germany", addressNote:"(placeholder — update with your real address)",
+        phoneLabel:"Phone / WhatsApp",
+        hoursLabel:"Opening Hours", hoursMonFriLabel:"Monday – Friday", hoursMonFriValue:"08:00 – 18:00", hoursSatLabel:"Saturday", hoursSatValue:"09:00 – 14:00", hoursSunLabel:"Sunday", hoursSunValue:"Closed (Workshop)", hoursTowingLabel:"Towing & Roadside", hoursTowingValue:"24/7",
+        chatBtn:"Chat on WhatsApp", callBtn:"Call Us", findUs:"Find Us",
+        findUsText:"Prefer to message us directly? Use the towing quote form above for an instant distance estimate, or tap \"Chat on WhatsApp\" for general questions, appointment booking, or repair estimates."
+      },
+      footer: { text:"All rights reserved." },
+      whatsappDefault: "Hello Barkoli Trucks & Cars, I'd like some help.",
+      msg: { greeting:"Hello Barkoli Trucks & Cars, I'd like a towing quote:", name:"Name", phone:"Phone", from:"From", to:"To", distance:"Estimated distance", distanceUnit:"straight-line", starts:"Does the car start", startsYes:"Yes", startsNo:"No", vehicleType:"Vehicle type", vehicleModel:"Vehicle model", weight:"Approximate weight", weightUnit:"kg", closing:"Please confirm the price and ETA. Thank you!" }
+    },
+    de: {
+      meta: { title:"Barkoli Trucks & Cars | Kfz-Reparatur & Abschleppdienst", description:"Barkoli Trucks & Cars — professionelle Kfz-Reparatur und Abschleppdienste. Erhalten Sie ein sofortiges Abschleppangebot per WhatsApp." },
+      nav: { home:"Startseite", services:"Leistungen", quote:"Angebot einholen", gallery:"Galerie", contact:"Kontakt", ctaQuote:"Abschleppangebot" },
+      brand: { sub:"Lkw & Autos" },
+      hero: { titleSpan:"LKW & AUTOS", tagline:"Zuverlässige Kfz-Reparatur & 24/7 Abschleppdienst, dem Sie vertrauen können", desc:"Von Bremsenservice bis zur Panne auf der Autobahn — unsere zertifizierten Mechaniker und unser Abschleppteam halten Sie in Bewegung. Schnelle Reaktion, faire Preise, ehrliche Arbeit.", ctaQuote:"Abschleppangebot erhalten", ctaServices:"Unsere Leistungen", badge247:"Abschleppbereitschaft", badge15:"Jahre Erfahrung", badge100:"Zertifizierte Mechaniker" },
+      heroVisual: { title:"Warum Fahrer sich für Barkoli entscheiden", sub:"Eine Werkstatt, die auf Schnelligkeit, Transparenz und Handwerkskunst setzt.", row1Title:"Lizenziert & versichert", row1Sub:"Vollständige Werkstattkonformität", row2Title:"Schnelle Einsatzbereitschaft", row2Sub:"Abschleppdienst in wenigen Minuten vor Ort", row3Title:"Transparente Preise", row3Sub:"Sofortige Angebote per WhatsApp" },
+      quote: { tag:"Sofortige Schätzung", title:"Abschleppangebot in Sekunden erhalten", sub:"Geben Sie Abhol- und Zielort ein. Wir schätzen die Entfernung und senden Ihre Anfrage direkt an unser WhatsApp — keine Formulare, keine Warteschleife." },
+      form: {
+        fromLabel:"Abholort", fromPh:"Adresse oder Ort eingeben…",
+        toLabel:"Zielort", toPh:"Adresse oder Ort eingeben…",
+        nameLabel:"Ihr Name", namePh:"Max Mustermann",
+        phoneLabel:"Ihre Telefonnummer", phonePh:"+49 151 23456789",
+        vehicleTypeLabel:"Fahrzeugtyp", vehicleTypePh:"Fahrzeugtyp auswählen…",
+        vehicleModelLabel:"Fahrzeugmodell", vehicleModelPh:"z. B. BMW 3er",
+        weightLabel:"Ungefähres Gewicht (kg)", weightOptional:"— optional", weightPh:"z. B. 1500",
+        startsLabel:"Springt das Auto an?", startsYes:"Ja, es springt an", startsNo:"Nein, es springt nicht an",
+        distanceLabel:"Geschätzte Luftlinienentfernung",
+        distanceNote:"Die tatsächliche Abschleppstrecke kann je nach Routenführung leicht abweichen — der Endpreis wird von unserem Team per WhatsApp bestätigt.",
+        error:"Bitte wählen Sie sowohl „Abholort“ als auch „Zielort“ aus der Vorschlagsliste, geben Sie Namen und Telefonnummer ein und teilen Sie uns mit, ob das Auto anspringt.",
+        submitBtn:"Angebot per WhatsApp senden",
+        note:"Sie werden zu WhatsApp weitergeleitet, Ihre Anfrage ist bereits ausgefüllt — einfach senden."
+      },
+      vehicleTypes: { car:"Auto / Limousine", suv:"SUV", van:"Transporter", pickup:"Pickup", lightTruck:"Leicht-Lkw", motorcycle:"Motorrad", other:"Sonstiges" },
+      services: { tag:"Was wir tun", title:"Kfz-Reparatur & Abschleppdienst aus einer Hand", sub:"Von der Routinewartung bis zum Notfall am Straßenrand — unser Team kümmert sich um Autos und Lkw aller Marken und Modelle.", autoSubhead:"Kfz-Reparaturleistungen", towingSubhead:"Abschlepp- & Pannenhilfe" },
+      serviceItems: {
+        brakes:{title:"Bremsreparatur & -service", desc:"Austausch von Bremsbelägen und -scheiben, Bremsflüssigkeitswechsel und vollständige Sicherheitsprüfungen."},
+        oil:{title:"Ölwechsel & Flüssigkeiten", desc:"Vollsynthetischer und konventioneller Ölwechsel sowie Nachfüllen von Kühlmittel, Getriebe- und Bremsflüssigkeit."},
+        diagnostics:{title:"Computerdiagnose", desc:"Moderne Diagnosegeräte zur schnellen Fehlersuche bei Motorkontrollleuchte und elektrischen Störungen."},
+        engine:{title:"Motorreparatur & -überholung", desc:"Vom Zahnriemenwechsel bis zur kompletten Überholung — für Leistung und Zuverlässigkeit."},
+        transmission:{title:"Getriebeservice", desc:"Reparatur von Automatik- und Schaltgetrieben, Flüssigkeitsservice und Kupplungswechsel."},
+        tires:{title:"Reifen & Achsvermessung", desc:"Reifenwechsel, Auswuchten, Reifenrotation und präzise Achsvermessung."},
+        battery:{title:"Batterie & Elektrik", desc:"Batterietest und -wechsel, Lichtmaschinen- und Anlasserreparatur, Diagnose der Verkabelung."},
+        suspension:{title:"Fahrwerk & Lenkung", desc:"Stoßdämpfer, Federbeine, Kugelgelenke und Lenkungsreparatur für eine sichere, komfortable Fahrt."},
+        ac:{title:"Klimaanlagen- & Heizungsreparatur", desc:"Diagnose der Klimaanlage, Kältemittel-Nachfüllung und Kompressoraustausch."},
+        flatbed:{title:"Tieflader- & Lkw-Abschleppdienst", desc:"Sicherer Transport von Pkw, SUVs und Leicht-Lkw mit unserer Tiefladerflotte."},
+        emergency:{title:"24/7-Notabschleppdienst", desc:"Tag und Nacht bringt Sie unser Einsatzteam sicher von der Straße."},
+        lockout:{title:"Aussperrhilfe", desc:"Ausgesperrt? Wir öffnen Ihr Fahrzeug schnell und ohne Schäden."},
+        jumpstart:{title:"Starthilfe & Batterie", desc:"Batterie leer unterwegs? Wir geben Starthilfe oder tauschen sie direkt vor Ort."},
+        flattire:{title:"Reifenpanne", desc:"Schneller Reifenwechsel am Straßenrand, damit es sicher weitergeht."},
+        accident:{title:"Unfallbergung", desc:"Sichere, versicherungsfreundliche Bergung und Transport nach einem Unfall."}
+      },
+      gallery: { tag:"Unsere Arbeit", title:"Galerie", sub:"Ein Einblick in unsere Werkstatt und den Abschleppbetrieb. (Platzhalterbilder — durch echte Fotos von Werkstatt, Flotte und abgeschlossenen Aufträgen ersetzen.)", towingFleet:"Abschleppflotte", workshopBay:"Werkstatthalle", brakeService:"Bremsenservice", engineRepair:"Motorreparatur", diagnostics:"Diagnose", wheelAlignment:"Achsvermessung", accidentRecovery:"Unfallbergung" },
+      contact: {
+        tag:"Kontaktieren Sie uns", title:"Besuchen Sie uns oder rufen Sie an", sub:"Auf der Straße liegengeblieben oder eine Reparatur nötig? Melden Sie sich jederzeit — unser Abschleppdienst ist rund um die Uhr erreichbar.",
+        addressLabel:"Werkstattadresse", addressValue:"Musterstraße 12, 12345 Musterstadt, Deutschland", addressNote:"(Platzhalter — bitte durch Ihre echte Adresse ersetzen)",
+        phoneLabel:"Telefon / WhatsApp",
+        hoursLabel:"Öffnungszeiten", hoursMonFriLabel:"Montag – Freitag", hoursMonFriValue:"08:00 – 18:00 Uhr", hoursSatLabel:"Samstag", hoursSatValue:"09:00 – 14:00 Uhr", hoursSunLabel:"Sonntag", hoursSunValue:"Geschlossen (Werkstatt)", hoursTowingLabel:"Abschlepp- & Pannendienst", hoursTowingValue:"24/7",
+        chatBtn:"Auf WhatsApp chatten", callBtn:"Anrufen", findUs:"So finden Sie uns",
+        findUsText:"Möchten Sie uns lieber direkt schreiben? Nutzen Sie oben das Abschleppformular für eine sofortige Entfernungsschätzung oder tippen Sie auf „Auf WhatsApp chatten“ für allgemeine Fragen, Terminbuchungen oder Reparaturkostenvoranschläge."
+      },
+      footer: { text:"Alle Rechte vorbehalten." },
+      whatsappDefault: "Hallo Barkoli Trucks & Cars, ich benötige Hilfe.",
+      msg: { greeting:"Hallo Barkoli Trucks & Cars, ich möchte ein Abschleppangebot:", name:"Name", phone:"Telefon", from:"Von", to:"Nach", distance:"Geschätzte Entfernung", distanceUnit:"Luftlinie", starts:"Springt das Auto an", startsYes:"Ja", startsNo:"Nein", vehicleType:"Fahrzeugtyp", vehicleModel:"Fahrzeugmodell", weight:"Ungefähres Gewicht", weightUnit:"kg", closing:"Bitte bestätigen Sie den Preis und die voraussichtliche Ankunftszeit. Vielen Dank!" }
+    },
+    nl: {
+      meta: { title:"Barkoli Trucks & Cars | Autoreparatie & Wegsleepdienst", description:"Barkoli Trucks & Cars — professionele autoreparatie en sleepdiensten. Ontvang direct een sleepofferte via WhatsApp." },
+      nav: { home:"Home", services:"Diensten", quote:"Offerte aanvragen", gallery:"Galerij", contact:"Contact", ctaQuote:"Sleepofferte" },
+      brand: { sub:"Trucks & Auto's" },
+      hero: { titleSpan:"TRUCKS & AUTO'S", tagline:"Betrouwbare autoreparatie & 24/7 wegsleepdienst waar u op kunt vertrouwen", desc:"Van remonderhoud tot pech onderweg — onze gecertificeerde monteurs en sleepploeg houden u in beweging. Snelle reactie, eerlijke prijzen, eerlijk werk.", ctaQuote:"Vraag een sleepofferte aan", ctaServices:"Onze diensten", badge247:"Sleepdienst respons", badge15:"Jaar ervaring", badge100:"Gecertificeerde monteurs" },
+      heroVisual: { title:"Waarom automobilisten voor Barkoli kiezen", sub:"Een garage gebouwd op snelheid, transparantie en vakmanschap.", row1Title:"Gelicentieerd & verzekerd", row1Sub:"Volledig gecertificeerde werkplaats", row2Title:"Snelle uitruk", row2Sub:"Sleepdienst binnen enkele minuten ter plaatse", row3Title:"Transparante prijzen", row3Sub:"Directe offertes via WhatsApp" },
+      quote: { tag:"Directe schatting", title:"Ontvang in seconden een sleepofferte", sub:"Voer uw ophaal- en bestemmingslocatie in. Wij schatten de afstand en sturen uw aanvraag rechtstreeks naar onze WhatsApp — geen formulieren, geen wachttijd." },
+      form: {
+        fromLabel:"Ophalen vanaf", fromPh:"Begin met typen van een adres of plaats…",
+        toLabel:"Slepen naar", toPh:"Begin met typen van een adres of plaats…",
+        nameLabel:"Uw naam", namePh:"Jan Jansen",
+        phoneLabel:"Uw telefoonnummer", phonePh:"+49 151 23456789",
+        vehicleTypeLabel:"Voertuigtype", vehicleTypePh:"Selecteer voertuigtype…",
+        vehicleModelLabel:"Voertuigmodel", vehicleModelPh:"bijv. BMW 3 Serie",
+        weightLabel:"Geschat gewicht (kg)", weightOptional:"— optioneel", weightPh:"bijv. 1500",
+        startsLabel:"Start de auto?", startsYes:"Ja, hij start", startsNo:"Nee, hij start niet",
+        distanceLabel:"Geschatte hemelsbrede afstand",
+        distanceNote:"De werkelijke sleepafstand kan enigszins afwijken afhankelijk van de routering — de definitieve prijs wordt door ons team via WhatsApp bevestigd.",
+        error:"Selecteer zowel een \"Ophalen vanaf\"- als \"Slepen naar\"-locatie uit de suggestielijst, vul uw naam en telefoonnummer in, en laat ons weten of de auto start.",
+        submitBtn:"Verstuur offerte via WhatsApp",
+        note:"U wordt doorgestuurd naar WhatsApp met uw vooraf ingevulde aanvraag — druk gewoon op verzenden."
+      },
+      vehicleTypes: { car:"Auto / Sedan", suv:"SUV", van:"Bestelwagen", pickup:"Pick-up", lightTruck:"Lichte vrachtwagen", motorcycle:"Motorfiets", other:"Anders" },
+      services: { tag:"Wat wij doen", title:"Complete autoreparatie & wegsleepdienst", sub:"Van routineonderhoud tot pech onderweg — ons team behandelt auto's en trucks van elk merk en model.", autoSubhead:"Autoreparatiediensten", towingSubhead:"Sleep- & pechhulpdiensten" },
+      serviceItems: {
+        brakes:{title:"Remreparatie & -onderhoud", desc:"Vervanging van remblokken en remschijven, remvloeistof verversen en volledige veiligheidsinspecties."},
+        oil:{title:"Olieverversing & vloeistoffen", desc:"Volledig synthetische en conventionele olieverversingen plus bijvullen van koelvloeistof, transmissie- en remvloeistof."},
+        diagnostics:{title:"Computerdiagnose", desc:"Geavanceerde scandiagnose om storingslampjes en elektrische problemen snel op te sporen."},
+        engine:{title:"Motorreparatie & revisie", desc:"Van distributieriemen tot volledige revisies — voor herstel van prestaties en betrouwbaarheid."},
+        transmission:{title:"Transmissieservice", desc:"Reparatie van automatische en handgeschakelde transmissies, vloeistofservice en koppelingsvervanging."},
+        tires:{title:"Banden & wieluitlijning", desc:"Bandenvervanging, balanceren, rotatie en precisie-wieluitlijning."},
+        battery:{title:"Accu & elektrisch systeem", desc:"Accutest en -vervanging, reparatie van dynamo en startmotor, bedradingsdiagnose."},
+        suspension:{title:"Vering & stuurinrichting", desc:"Schokdempers, veerpoten, kogelgewrichten en reparatie van stuurcomponenten voor een soepele, veilige rit."},
+        ac:{title:"Airco- & verwarmingsreparatie", desc:"Diagnose van klimaatregeling, bijvullen van koelmiddel en vervanging van de compressor."},
+        flatbed:{title:"Dieplader- & vrachtwagensleepdienst", desc:"Veilig transport van auto's, SUV's en lichte vrachtwagens met onze dieplader-vloot."},
+        emergency:{title:"24/7 spoedsleepdienst", desc:"Dag en nacht staat ons dispatchteam klaar om u veilig van de weg te halen."},
+        lockout:{title:"Hulp bij het buitensluiten", desc:"Buitengesloten? Wij openen uw voertuig snel en zonder schade."},
+        jumpstart:{title:"Startkabels & accu", desc:"Lege accu onderweg? Wij starten hem bij of vervangen hem ter plaatse."},
+        flattire:{title:"Lekke band verhelpen", desc:"Snelle bandenwissel langs de weg zodat u veilig verder kunt."},
+        accident:{title:"Bergen na ongeval", desc:"Veilige, verzekeringsvriendelijke berging en transport na een aanrijding."}
+      },
+      gallery: { tag:"Ons werk", title:"Galerij", sub:"Een kijkje in onze werkplaats en sleepactiviteiten. (Placeholder-afbeeldingen — vervang door echte foto's van de werkplaats, het wagenpark en afgeronde klussen.)", towingFleet:"Sleepwagenpark", workshopBay:"Werkplaats", brakeService:"Remservice", engineRepair:"Motorreparatie", diagnostics:"Diagnose", wheelAlignment:"Wieluitlijning", accidentRecovery:"Bergen na ongeval" },
+      contact: {
+        tag:"Neem contact op", title:"Bezoek ons of bel voor hulp", sub:"Pech onderweg of een reparatie nodig? Neem altijd contact op — onze sleeplijn is 24/7 bereikbaar.",
+        addressLabel:"Werkplaatsadres", addressValue:"Musterstraße 12, 12345 Musterstadt, Duitsland", addressNote:"(placeholder — vervang door uw echte adres)",
+        phoneLabel:"Telefoon / WhatsApp",
+        hoursLabel:"Openingstijden", hoursMonFriLabel:"Maandag – vrijdag", hoursMonFriValue:"08:00 – 18:00", hoursSatLabel:"Zaterdag", hoursSatValue:"09:00 – 14:00", hoursSunLabel:"Zondag", hoursSunValue:"Gesloten (werkplaats)", hoursTowingLabel:"Slepen & pechhulp", hoursTowingValue:"24/7",
+        chatBtn:"Chat via WhatsApp", callBtn:"Bel ons", findUs:"Vind ons",
+        findUsText:"Liever direct een bericht sturen? Gebruik hierboven het sleepofferteformulier voor een directe afstandsschatting, of tik op \"Chat via WhatsApp\" voor algemene vragen, het boeken van een afspraak of reparatiekostenramingen."
+      },
+      footer: { text:"Alle rechten voorbehouden." },
+      whatsappDefault: "Hallo Barkoli Trucks & Cars, ik heb hulp nodig.",
+      msg: { greeting:"Hallo Barkoli Trucks & Cars, ik wil graag een sleepofferte:", name:"Naam", phone:"Telefoon", from:"Van", to:"Naar", distance:"Geschatte afstand", distanceUnit:"hemelsbreed", starts:"Start de auto", startsYes:"Ja", startsNo:"Nee", vehicleType:"Voertuigtype", vehicleModel:"Voertuigmodel", weight:"Geschat gewicht", weightUnit:"kg", closing:"Bevestig de prijs en aankomsttijd. Bedankt!" }
+    },
+    ar: {
+      meta: { title:"Barkoli Trucks & Cars | إصلاح سيارات وسحب", description:"Barkoli Trucks & Cars — خدمات إصلاح سيارات وسحب احترافية. احصل على عرض سحب فوري عبر واتساب." },
+      nav: { home:"الرئيسية", services:"الخدمات", quote:"احصل على عرض سعر", gallery:"معرض الصور", contact:"اتصل بنا", ctaQuote:"عرض سحب السيارات" },
+      brand: { sub:"الشاحنات والسيارات" },
+      hero: { titleSpan:"الشاحنات والسيارات", tagline:"إصلاح سيارات موثوق وخدمة سحب على مدار الساعة يمكنك الوثوق بها", desc:"من صيانة الفرامل إلى الأعطال على الطريق السريع — فريقنا من الميكانيكيين المعتمدين وطاقم السحب يبقيك في حركة دائمة. استجابة سريعة، أسعار عادلة، وعمل صادق.", ctaQuote:"احصل على عرض سحب", ctaServices:"خدماتنا", badge247:"استجابة السحب", badge15:"سنوات خبرة", badge100:"ميكانيكيون معتمدون" },
+      heroVisual: { title:"لماذا يختار السائقون Barkoli", sub:"ورشة مبنية على السرعة والشفافية والحرفية.", row1Title:"مرخّصون ومؤمّنون", row1Sub:"امتثال كامل لمعايير الورشة", row2Title:"استجابة سريعة", row2Sub:"وصول خدمة السحب خلال دقائق", row3Title:"أسعار شفافة", row3Sub:"عروض أسعار فورية عبر واتساب" },
+      quote: { tag:"تقدير فوري", title:"احصل على عرض سحب خلال ثوانٍ", sub:"أدخل موقع الانطلاق والوجهة. سنقدّر المسافة ونرسل طلبك مباشرة إلى واتساب — بدون نماذج وبدون انتظار." },
+      form: {
+        fromLabel:"السحب من", fromPh:"ابدأ بكتابة عنوان أو مكان…",
+        toLabel:"السحب إلى", toPh:"ابدأ بكتابة عنوان أو مكان…",
+        nameLabel:"اسمك", namePh:"محمد أحمد",
+        phoneLabel:"رقم هاتفك", phonePh:"+49 151 23456789",
+        vehicleTypeLabel:"نوع المركبة", vehicleTypePh:"اختر نوع المركبة…",
+        vehicleModelLabel:"طراز المركبة", vehicleModelPh:"مثال: BMW 3 Series",
+        weightLabel:"الوزن التقريبي (كجم)", weightOptional:"— اختياري", weightPh:"مثال: 1500",
+        startsLabel:"هل تعمل السيارة (تدور المحرك)؟", startsYes:"نعم، تعمل", startsNo:"لا، لا تعمل",
+        distanceLabel:"المسافة المقدّرة (خط مستقيم)",
+        distanceNote:"قد تختلف مسافة السحب الفعلية قليلاً حسب مسار الطريق — سيؤكد فريقنا السعر النهائي عبر واتساب.",
+        error:"يرجى اختيار موقعي \"السحب من\" و\"السحب إلى\" من قائمة الاقتراحات، وتعبئة الاسم ورقم الهاتف، وإخبارنا إذا كانت السيارة تعمل.",
+        submitBtn:"إرسال الطلب عبر واتساب",
+        note:"سيتم تحويلك إلى واتساب مع طلبك معبأً مسبقًا — فقط اضغط إرسال."
+      },
+      vehicleTypes: { car:"سيارة / سيدان", suv:"دفع رباعي (SUV)", van:"فان", pickup:"بيك أب", lightTruck:"شاحنة خفيفة", motorcycle:"دراجة نارية", other:"أخرى" },
+      services: { tag:"ماذا نقدم", title:"خدمات إصلاح السيارات والسحب الشاملة", sub:"من الصيانة الدورية إلى حالات الطوارئ على الطريق، يتعامل فريقنا مع السيارات والشاحنات من جميع الأنواع والموديلات.", autoSubhead:"خدمات إصلاح السيارات", towingSubhead:"خدمات السحب والمساعدة على الطريق" },
+      serviceItems: {
+        brakes:{title:"إصلاح وصيانة الفرامل", desc:"استبدال تيل وأقراص الفرامل، تغيير سائل الفرامل، وفحوصات سلامة كاملة."},
+        oil:{title:"تغيير الزيت والسوائل", desc:"تغيير زيت كامل التخليق أو تقليدي، إضافة سائل التبريد وسوائل ناقل الحركة والفرامل."},
+        diagnostics:{title:"فحص الكمبيوتر", desc:"تشخيص متقدم بأجهزة الفحص لتحديد أسباب أضواء المحرك والأعطال الكهربائية بسرعة."},
+        engine:{title:"إصلاح وإعادة تأهيل المحرك", desc:"من سيور التوقيت إلى إعادة التأهيل الكاملة — لاستعادة الأداء والموثوقية."},
+        transmission:{title:"خدمة ناقل الحركة", desc:"إصلاح ناقل الحركة الأوتوماتيكي واليدوي، خدمة السوائل، واستبدال القابض."},
+        tires:{title:"الإطارات وضبط الزوايا", desc:"استبدال الإطارات، الموازنة، التدوير، وضبط دقيق للزوايا."},
+        battery:{title:"البطارية والكهرباء", desc:"فحص واستبدال البطارية، إصلاح المولد وبادئ الحركة، وتشخيص الأسلاك الكهربائية."},
+        suspension:{title:"نظام التعليق والتوجيه", desc:"إصلاح الممتصات والمساعدين والمفاصل الكروية ومكونات التوجيه لقيادة سلسة وآمنة."},
+        ac:{title:"إصلاح التكييف والتدفئة", desc:"تشخيص نظام التحكم بالمناخ، إعادة تعبئة غاز التبريد، واستبدال الضاغط."},
+        flatbed:{title:"سحب بالونش المسطح والشاحنات", desc:"نقل آمن للسيارات والدفع الرباعي والشاحنات الخفيفة بأسطول الونش المسطح لدينا."},
+        emergency:{title:"سحب طوارئ على مدار الساعة", desc:"ليلاً أو نهارًا، فريق الاستجابة لدينا جاهز لإخراجك من الطريق بأمان."},
+        lockout:{title:"المساعدة عند نسيان المفتاح", desc:"نسيت مفتاحك بالداخل؟ سنفتح سيارتك بسرعة وبدون أي ضرر."},
+        jumpstart:{title:"تشغيل البطارية بالكابلات", desc:"بطارية فارغة على الطريق؟ سنشغّلها أو نستبدلها في الموقع."},
+        flattire:{title:"تغيير الإطار المثقوب", desc:"تغيير سريع للإطار على الطريق ليتسنى لك المتابعة بأمان."},
+        accident:{title:"استرجاع بعد الحوادث", desc:"استرجاع ونقل آمن ومتوافق مع شركات التأمين بعد وقوع حادث."}
+      },
+      gallery: { tag:"أعمالنا", title:"معرض الصور", sub:"لمحة داخل ورشتنا وعمليات السحب. (صور مؤقتة — استبدلها بصور حقيقية للورشة والأسطول والأعمال المنجزة.)", towingFleet:"أسطول السحب", workshopBay:"صالة الورشة", brakeService:"خدمة الفرامل", engineRepair:"إصلاح المحرك", diagnostics:"الفحص", wheelAlignment:"ضبط الزوايا", accidentRecovery:"استرجاع بعد الحوادث" },
+      contact: {
+        tag:"تواصل معنا", title:"زرنا أو اتصل للحصول على المساعدة", sub:"هل تعطلت سيارتك على الطريق أو تحتاج لحجز موعد إصلاح؟ تواصل معنا في أي وقت — خط السحب لدينا يعمل على مدار الساعة.",
+        addressLabel:"عنوان الورشة", addressValue:"Musterstraße 12, 12345 Musterstadt، ألمانيا", addressNote:"(عنوان مؤقت — يرجى استبداله بعنوانك الفعلي)",
+        phoneLabel:"الهاتف / واتساب",
+        hoursLabel:"ساعات العمل", hoursMonFriLabel:"الاثنين – الجمعة", hoursMonFriValue:"08:00 – 18:00", hoursSatLabel:"السبت", hoursSatValue:"09:00 – 14:00", hoursSunLabel:"الأحد", hoursSunValue:"مغلق (الورشة)", hoursTowingLabel:"السحب والمساعدة على الطريق", hoursTowingValue:"24/7",
+        chatBtn:"تواصل عبر واتساب", callBtn:"اتصل بنا", findUs:"موقعنا",
+        findUsText:"تفضّل التواصل معنا مباشرة؟ استخدم نموذج طلب السحب أعلاه للحصول على تقدير فوري للمسافة، أو اضغط على \"تواصل عبر واتساب\" للأسئلة العامة أو حجز موعد أو تقدير تكلفة الإصلاح."
+      },
+      footer: { text:"جميع الحقوق محفوظة." },
+      whatsappDefault: "مرحبًا Barkoli Trucks & Cars، أحتاج إلى مساعدة.",
+      msg: { greeting:"مرحبًا Barkoli Trucks & Cars، أرغب في الحصول على عرض سحب:", name:"الاسم", phone:"الهاتف", from:"من", to:"إلى", distance:"المسافة المقدّرة", distanceUnit:"خط مستقيم", starts:"هل تعمل السيارة", startsYes:"نعم", startsNo:"لا", vehicleType:"نوع المركبة", vehicleModel:"طراز المركبة", weight:"الوزن التقريبي", weightUnit:"كجم", closing:"يرجى تأكيد السعر ووقت الوصول المتوقع. شكرًا لكم!" }
+    }
+  };
+
+  function i18nGet(dict, path){
+    var parts = path.split('.');
+    var cur = dict;
+    for(var i=0;i<parts.length;i++){
+      if(cur == null) return null;
+      cur = cur[parts[i]];
+    }
+    return cur;
+  }
+
+  var currentLang = 'en';
+
+  function applyTranslations(lang){
+    if(!I18N[lang]) lang = 'en';
+    currentLang = lang;
+    var dict = I18N[lang];
+
+    document.documentElement.lang = lang;
+    document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+
+    document.querySelectorAll('[data-i18n]').forEach(function(el){
+      var val = i18nGet(dict, el.getAttribute('data-i18n'));
+      if(val != null) el.textContent = val;
+    });
+    document.querySelectorAll('[data-i18n-ph]').forEach(function(el){
+      var val = i18nGet(dict, el.getAttribute('data-i18n-ph'));
+      if(val != null) el.setAttribute('placeholder', val);
+    });
+
+    var titleEl = document.getElementById('pageTitle');
+    if(titleEl) titleEl.textContent = dict.meta.title;
+    document.title = dict.meta.title;
+    var descEl = document.getElementById('pageDescription');
+    if(descEl) descEl.setAttribute('content', dict.meta.description);
+
+    var langLabelEl = document.getElementById('langBtnLabel');
+    if(langLabelEl) langLabelEl.textContent = lang.toUpperCase();
+    document.querySelectorAll('#langMenu button').forEach(function(b){
+      b.classList.toggle('active', b.getAttribute('data-lang') === lang);
+    });
+
+    var waBase = "https://wa.me/" + WHATSAPP_NUMBER + "?text=";
+    var chatBtn = document.getElementById('chatWaBtn');
+    if(chatBtn) chatBtn.href = waBase + encodeURIComponent(dict.whatsappDefault);
+    var floatBtn = document.getElementById('floatWaBtn');
+    if(floatBtn){
+      floatBtn.href = waBase + encodeURIComponent(dict.whatsappDefault);
+      floatBtn.setAttribute('aria-label', dict.contact.chatBtn);
+    }
+
+    try{ localStorage.setItem('barkoli_lang', lang); }catch(e){}
+  }
+
+  // ---------- LANGUAGE SWITCHER UI ----------
+  var langBtn = document.getElementById('langBtn');
+  var langMenu = document.getElementById('langMenu');
+  langBtn.addEventListener('click', function(e){
+    e.stopPropagation();
+    var isOpen = langMenu.classList.toggle('open');
+    langBtn.classList.toggle('open', isOpen);
+    langBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+  document.querySelectorAll('#langMenu button').forEach(function(b){
+    b.addEventListener('click', function(){
+      applyTranslations(b.getAttribute('data-lang'));
+      langMenu.classList.remove('open');
+      langBtn.classList.remove('open');
+      langBtn.setAttribute('aria-expanded', 'false');
+    });
+  });
+  document.addEventListener('click', function(){
+    langMenu.classList.remove('open');
+    langBtn.classList.remove('open');
+    langBtn.setAttribute('aria-expanded', 'false');
+  });
+
+  (function initLang(){
+    var saved = null;
+    try{ saved = localStorage.getItem('barkoli_lang'); }catch(e){}
+    if(!saved){
+      var browserLang = (navigator.language || 'en').slice(0,2).toLowerCase();
+      if(['de','nl','ar'].indexOf(browserLang) !== -1) saved = browserLang;
+    }
+    applyTranslations(saved || 'en');
+  })();
 
   // ---------- MOBILE NAV ----------
   var burger = document.getElementById('burgerBtn');
@@ -1034,7 +1422,7 @@
 
     var name = document.getElementById('nameInput').value.trim();
     var phone = document.getElementById('phoneInput').value.trim();
-    var vehicleType = document.getElementById('vehicleTypeInput').value.trim();
+    var vehicleTypeCode = document.getElementById('vehicleTypeInput').value.trim();
     var vehicleModel = document.getElementById('vehicleModelInput').value.trim();
     var weight = document.getElementById('weightInput').value.trim();
 
@@ -1044,20 +1432,23 @@
     }
     formError.classList.remove('active');
 
+    var dict = I18N[currentLang];
     var distanceLabel = currentDistanceKm !== null ? currentDistanceKm.toFixed(1) + ' km' : 'n/a';
+    var vehicleTypeLabel = vehicleTypeCode ? i18nGet(dict, 'vehicleTypes.' + vehicleTypeCode) : '';
+    var startsLabel = carStartsValue === 'yes' ? dict.msg.startsYes : dict.msg.startsNo;
 
     var message =
-      "Hello Barkoli Trucks & Cars, I'd like a towing quote:\n\n" +
-      "Name: " + name + "\n" +
-      "Phone: " + phone + "\n" +
-      "From: " + fromState.label + "\n" +
-      "To: " + toState.label + "\n" +
-      "Estimated distance: " + distanceLabel + " (straight-line)\n" +
-      "Does the car start: " + carStartsValue + "\n" +
-      (vehicleType ? "Vehicle type: " + vehicleType + "\n" : "") +
-      (vehicleModel ? "Vehicle model: " + vehicleModel + "\n" : "") +
-      (weight ? "Approximate weight: " + weight + " kg\n" : "") +
-      "\nPlease confirm the price and ETA. Thank you!";
+      dict.msg.greeting + "\n\n" +
+      dict.msg.name + ": " + name + "\n" +
+      dict.msg.phone + ": " + phone + "\n" +
+      dict.msg.from + ": " + fromState.label + "\n" +
+      dict.msg.to + ": " + toState.label + "\n" +
+      dict.msg.distance + ": " + distanceLabel + " (" + dict.msg.distanceUnit + ")\n" +
+      dict.msg.starts + ": " + startsLabel + "\n" +
+      (vehicleTypeLabel ? dict.msg.vehicleType + ": " + vehicleTypeLabel + "\n" : "") +
+      (vehicleModel ? dict.msg.vehicleModel + ": " + vehicleModel + "\n" : "") +
+      (weight ? dict.msg.weight + ": " + weight + " " + dict.msg.weightUnit + "\n" : "") +
+      "\n" + dict.msg.closing;
 
     var url = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(message);
     window.open(url, '_blank');
