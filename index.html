@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Barkoli Trucks &amp; Cars | Auto Repair &amp; Towing</title>
+<meta name="description" content="Barkoli Trucks & Cars — professional auto repair and towing services. Get an instant towing quote via WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --gold: #d4af37;
+    --gold-light: #f4e2a1;
+    --gold-dark: #a9812f;
+    --gold-gradient: linear-gradient(135deg, #f4e2a1 0%, #d4af37 45%, #a9812f 100%);
+    --black: #0a0a0a;
+    --black-soft: #131313;
+    --black-card: #1a1a1a;
+    --border-gold: rgba(212,175,55,0.35);
+    --text-muted: #b9b3a2;
+    --radius: 14px;
+    --maxw: 1180px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background: var(--black);
+    color:#f3f1ea;
+    font-family:'Poppins', sans-serif;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,h4{ font-family:'Oswald', sans-serif; letter-spacing:0.5px; }
+  a{ color:inherit; text-decoration:none; }
+  ul{ list-style:none; }
+  img{ max-width:100%; display:block; }
+  .container{ max-width:var(--maxw); margin:0 auto; padding:0 24px; }
+  .gold-text{
+    background: var(--gold-gradient);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+  .btn{
+    display:inline-flex; align-items:center; gap:10px;
+    padding:14px 30px;
+    border-radius:50px;
+    font-weight:600;
+    font-size:0.95rem;
+    cursor:pointer;
+    border:1px solid transparent;
+    transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+    text-align:center;
+    justify-content:center;
+  }
+  .btn-primary{
+    background: var(--gold-gradient);
+    color:#171204;
+    box-shadow: 0 6px 20px rgba(212,175,55,0.25);
+  }
+  .btn-primary:hover{ transform: translateY(-2px); box-shadow: 0 10px 28px rgba(212,175,55,0.4); }
+  .btn-outline{
+    background:transparent;
+    color: var(--gold-light);
+    border:1px solid var(--border-gold);
+  }
+  .btn-outline:hover{ background: rgba(212,175,55,0.08); transform: translateY(-2px); }
+  .btn-whatsapp{
+    background:#1ea952;
+    color:#fff;
+  }
+  .btn-whatsapp:hover{ transform: translateY(-2px); box-shadow: 0 10px 24px rgba(30,169,82,0.35); }
+  .section{ padding: 90px 0; position:relative; }
+  .section-tag{
+    display:inline-block;
+    color: var(--gold);
+    text-transform:uppercase;
+    letter-spacing:3px;
+    font-size:0.78rem;
+    font-weight:600;
+    margin-bottom:12px;
+  }
+  .section-title{
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-weight:700;
+    margin-bottom:16px;
+  }
+  .section-sub{
+    color:var(--text-muted);
+    max-width:640px;
+    margin-bottom:48px;
+    font-size:1.02rem;
+  }
+  .center{ text-align:center; margin-left:auto; margin-right:auto; }
+
+  /* ---------- HEADER ---------- */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:1000;
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(10px);
+    border-bottom:1px solid var(--border-gold);
+  }
+  .nav-wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 24px;
+    max-width:var(--maxw); margin:0 auto;
+  }
+  .brand{ display:flex; align-items:center; gap:12px; }
+  .logo-mark{
+    width:46px; height:46px;
+    border-radius:10px;
+    background: var(--black-card);
+    border:1px solid var(--border-gold);
+    display:flex; align-items:center; justify-content:center;
+    position:relative;
+    overflow:hidden;
+  }
+  .logo-mark svg{ width:28px; height:28px; }
+  .brand-name{ font-family:'Oswald',sans-serif; font-weight:700; font-size:1.25rem; letter-spacing:1px; line-height:1; }
+  .brand-sub{ font-size:0.62rem; letter-spacing:3px; color: var(--gold); text-transform:uppercase; }
+  nav ul{ display:flex; gap:34px; }
+  nav a{
+    font-size:0.92rem; font-weight:500; color:#e9e5d8;
+    position:relative; padding:6px 0;
+  }
+  nav a::after{
+    content:''; position:absolute; left:0; bottom:0; width:0; height:2px;
+    background: var(--gold-gradient); transition: width .25s ease;
+  }
+  nav a:hover::after{ width:100%; }
+  .nav-cta{ display:flex; align-items:center; gap:14px; }
+  .burger{
+    display:none; flex-direction:column; gap:5px; cursor:pointer; background:none; border:none;
+  }
+  .burger span{ width:26px; height:2px; background: var(--gold); display:block; }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    min-height:100vh;
+    display:flex; align-items:center;
+    position:relative;
+    padding-top:110px;
+    background:
+      radial-gradient(ellipse at 20% 20%, rgba(212,175,55,0.10), transparent 55%),
+      radial-gradient(ellipse at 80% 60%, rgba(212,175,55,0.08), transparent 50%),
+      var(--black);
+  }
+  .hero::before{
+    content:'';
+    position:absolute; inset:0;
+    background-image:
+      repeating-linear-gradient(0deg, rgba(212,175,55,0.035) 0px, rgba(212,175,55,0.035) 1px, transparent 1px, transparent 60px),
+      repeating-linear-gradient(90deg, rgba(212,175,55,0.035) 0px, rgba(212,175,55,0.035) 1px, transparent 1px, transparent 60px);
+    pointer-events:none;
+  }
+  .hero-inner{
+    display:grid; grid-template-columns: 1.1fr 0.9fr; gap:50px; align-items:center;
+    position:relative; z-index:2;
+  }
+  .hero-logo-big{
+    width:150px; height:150px;
+    margin-bottom:28px;
+    border-radius:20px;
+    background: var(--black-card);
+    border:1px solid var(--border-gold);
+    display:flex; align-items:center; justify-content:center;
+    box-shadow: 0 20px 60px rgba(212,175,55,0.12);
+  }
+  .hero-logo-big svg{ width:92px; height:92px; }
+  .hero h1{
+    font-size: clamp(2.4rem, 5.5vw, 4rem);
+    font-weight:800;
+    line-height:1.05;
+    margin-bottom:18px;
+  }
+  .hero-tagline{
+    font-size: clamp(1.05rem, 2vw, 1.3rem);
+    color: var(--gold-light);
+    font-weight:500;
+    margin-bottom:16px;
+    letter-spacing:0.5px;
+  }
+  .hero p.desc{
+    color: var(--text-muted);
+    max-width:520px;
+    margin-bottom:34px;
+    font-size:1.02rem;
+  }
+  .hero-actions{ display:flex; gap:16px; flex-wrap:wrap; }
+  .hero-badges{
+    display:flex; gap:26px; margin-top:44px; flex-wrap:wrap;
+  }
+  .hero-badge b{ display:block; font-size:1.5rem; color:var(--gold-light); font-family:'Oswald',sans-serif; }
+  .hero-badge span{ font-size:0.78rem; color:var(--text-muted); text-transform:uppercase; letter-spacing:1px; }
+
+  .hero-visual{
+    background: var(--black-card);
+    border:1px solid var(--border-gold);
+    border-radius: 20px;
+    padding:34px;
+    box-shadow: 0 30px 70px rgba(0,0,0,0.6);
+  }
+  .hero-visual h3{ color:var(--gold-light); font-size:1.1rem; margin-bottom:6px; }
+  .hero-visual p{ color:var(--text-muted); font-size:0.9rem; margin-bottom:22px; }
+  .mini-row{
+    display:flex; align-items:center; gap:14px;
+    padding:14px 0; border-bottom:1px solid rgba(212,175,55,0.15);
+  }
+  .mini-row:last-child{ border-bottom:none; }
+  .mini-ico{
+    width:38px; height:38px; border-radius:9px;
+    background: rgba(212,175,55,0.1); border:1px solid var(--border-gold);
+    display:flex; align-items:center; justify-content:center; flex-shrink:0;
+  }
+  .mini-ico svg{ width:18px; height:18px; stroke:var(--gold); }
+  .mini-row div b{ font-size:0.92rem; display:block; }
+  .mini-row div span{ font-size:0.8rem; color:var(--text-muted); }
+
+  /* ---------- QUOTE FORM ---------- */
+  .quote-section{
+    background: linear-gradient(180deg, var(--black-soft), var(--black));
+    border-top:1px solid var(--border-gold);
+    border-bottom:1px solid var(--border-gold);
+  }
+  .quote-card{
+    background: var(--black-card);
+    border:1px solid var(--border-gold);
+    border-radius: var(--radius);
+    padding:40px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  }
+  .form-grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap:22px;
+  }
+  .form-grid .full{ grid-column: 1 / -1; }
+  .field{ position:relative; }
+  .field label{
+    display:block; font-size:0.82rem; font-weight:600;
+    color: var(--gold-light); margin-bottom:8px; letter-spacing:0.3px;
+  }
+  .field input{
+    width:100%;
+    background:#0f0f0f;
+    border:1px solid rgba(212,175,55,0.25);
+    color:#f3f1ea;
+    padding:13px 16px;
+    border-radius:10px;
+    font-size:0.95rem;
+    font-family:'Poppins',sans-serif;
+    transition: border-color .2s ease, box-shadow .2s ease;
+  }
+  .field input:focus{
+    outline:none;
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px rgba(212,175,55,0.15);
+  }
+  .field input::placeholder{ color:#6b6555; }
+  .autocomplete-list{
+    position:absolute;
+    top:100%; left:0; right:0;
+    margin-top:6px;
+    background:#141414;
+    border:1px solid var(--border-gold);
+    border-radius:10px;
+    max-height:230px;
+    overflow-y:auto;
+    z-index:50;
+    display:none;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.6);
+  }
+  .autocomplete-list.active{ display:block; }
+  .autocomplete-list div{
+    padding:11px 16px;
+    font-size:0.87rem;
+    cursor:pointer;
+    border-bottom:1px solid rgba(212,175,55,0.08);
+    color:#ddd6c4;
+  }
+  .autocomplete-list div:last-child{ border-bottom:none; }
+  .autocomplete-list div:hover, .autocomplete-list div.active-opt{
+    background: rgba(212,175,55,0.12);
+    color: var(--gold-light);
+  }
+  .autocomplete-list .ac-loading, .autocomplete-list .ac-empty{
+    cursor:default; color:#8b856f;
+  }
+  .distance-box{
+    margin-top:26px;
+    padding:20px 24px;
+    border-radius:12px;
+    background: rgba(212,175,55,0.07);
+    border:1px dashed var(--border-gold);
+    display:none;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+    flex-wrap:wrap;
+  }
+  .distance-box.active{ display:flex; }
+  .distance-box .dist-value{ font-size:1.8rem; font-weight:700; color:var(--gold-light); font-family:'Oswald',sans-serif; }
+  .distance-box .dist-label{ font-size:0.8rem; color:var(--text-muted); }
+  .form-note{ font-size:0.78rem; color:#8b856f; margin-top:10px; }
+  .form-actions{ margin-top:28px; display:flex; gap:16px; flex-wrap:wrap; align-items:center; }
+  .form-error{
+    color:#ff8080; font-size:0.85rem; margin-top:14px; display:none;
+  }
+  .form-error.active{ display:block; }
+
+  /* ---------- SERVICES ---------- */
+  .services-grid{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap:24px;
+  }
+  .service-card{
+    background: var(--black-card);
+    border:1px solid var(--border-gold);
+    border-radius: var(--radius);
+    padding:30px 26px;
+    transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+  }
+  .service-card:hover{
+    transform: translateY(-6px);
+    border-color: var(--gold);
+    box-shadow: 0 16px 40px rgba(212,175,55,0.12);
+  }
+  .service-ico{
+    width:52px; height:52px; border-radius:12px;
+    background: rgba(212,175,55,0.1);
+    border:1px solid var(--border-gold);
+    display:flex; align-items:center; justify-content:center;
+    margin-bottom:18px;
+  }
+  .service-ico svg{ width:26px; height:26px; stroke:var(--gold); }
+  .service-card h4{ font-size:1.08rem; margin-bottom:8px; }
+  .service-card p{ font-size:0.88rem; color:var(--text-muted); }
+  .services-subhead{
+    font-size:0.85rem; text-transform:uppercase; letter-spacing:2px;
+    color:var(--gold); margin: 50px 0 22px; font-weight:600;
+  }
+  .services-subhead:first-of-type{ margin-top:0; }
+
+  /* ---------- GALLERY ---------- */
+  .gallery-grid{
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap:18px;
+  }
+  .gallery-item{
+    aspect-ratio: 1 / 1;
+    border-radius: 12px;
+    border:1px solid var(--border-gold);
+    background: linear-gradient(145deg, #1c1a12, #0d0c08);
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    gap:10px;
+    position:relative;
+    overflow:hidden;
+    cursor:pointer;
+    transition: transform .3s ease, box-shadow .3s ease;
+  }
+  .gallery-item:hover{ transform: scale(1.03); box-shadow: 0 16px 34px rgba(212,175,55,0.15); }
+  .gallery-item svg{ width:34px; height:34px; stroke:var(--gold); opacity:0.85; }
+  .gallery-item span{ font-size:0.78rem; color:var(--text-muted); letter-spacing:0.5px; }
+  .gallery-item::after{
+    content:'';
+    position:absolute; inset:0;
+    background: radial-gradient(circle at 50% 30%, rgba(212,175,55,0.12), transparent 70%);
+  }
+  .gallery-item.wide{ grid-column: span 2; }
+
+  /* ---------- CONTACT ---------- */
+  .contact-grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap:40px;
+  }
+  .contact-card{
+    background: var(--black-card);
+    border:1px solid var(--border-gold);
+    border-radius: var(--radius);
+    padding:34px;
+  }
+  .contact-row{
+    display:flex; gap:16px; align-items:flex-start;
+    padding:16px 0;
+    border-bottom:1px solid rgba(212,175,55,0.12);
+  }
+  .contact-row:last-child{ border-bottom:none; }
+  .contact-row .mini-ico{ margin-top:2px; }
+  .contact-row b{ display:block; font-size:0.95rem; margin-bottom:3px; }
+  .contact-row span, .contact-row a.link{ font-size:0.88rem; color:var(--text-muted); }
+  .contact-row a.link:hover{ color: var(--gold-light); }
+  .hours-table{ width:100%; border-collapse:collapse; margin-top:6px; }
+  .hours-table tr{ border-bottom:1px solid rgba(212,175,55,0.1); }
+  .hours-table tr:last-child{ border-bottom:none; }
+  .hours-table td{ padding:12px 0; font-size:0.9rem; }
+  .hours-table td:first-child{ color:#e9e5d8; font-weight:500; }
+  .hours-table td:last-child{ text-align:right; color:var(--text-muted); }
+  .hours-table tr.emergency td{ color: var(--gold-light); font-weight:600; }
+  .map-frame{
+    border-radius:12px; overflow:hidden; border:1px solid var(--border-gold);
+    margin-top:20px; height:220px;
+  }
+  .map-frame iframe{ width:100%; height:100%; border:0; filter: grayscale(0.4) invert(0.92) contrast(0.9); }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    padding:36px 0;
+    border-top:1px solid var(--border-gold);
+    text-align:center;
+    color:#7d7863;
+    font-size:0.85rem;
+  }
+  footer span.gold-text{ font-weight:600; }
+
+  /* ---------- FLOATING WHATSAPP ---------- */
+  .float-wa{
+    position:fixed; bottom:26px; right:26px; z-index:900;
+    width:60px; height:60px; border-radius:50%;
+    background:#1ea952; display:flex; align-items:center; justify-content:center;
+    box-shadow: 0 10px 30px rgba(30,169,82,0.4);
+    transition: transform .2s ease;
+  }
+  .float-wa:hover{ transform: scale(1.08); }
+  .float-wa svg{ width:30px; height:30px; fill:#fff; }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 960px){
+    .hero-inner{ grid-template-columns:1fr; }
+    .contact-grid{ grid-template-columns:1fr; }
+    .services-grid{ grid-template-columns: repeat(2, 1fr); }
+    .gallery-grid{ grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (max-width: 760px){
+    nav{ position:fixed; top:74px; left:0; right:0; background: rgba(10,10,10,0.98); border-bottom:1px solid var(--border-gold); transform: translateY(-140%); transition: transform .3s ease; }
+    nav.open{ transform: translateY(0); }
+    nav ul{ flex-direction:column; padding:20px 24px; gap:0; }
+    nav ul li{ border-bottom:1px solid rgba(212,175,55,0.1); }
+    nav ul li a{ display:block; padding:16px 0; }
+    .nav-cta .btn span.txt{ display:none; }
+    .burger{ display:flex; }
+    .form-grid{ grid-template-columns:1fr; }
+    .services-grid{ grid-template-columns: 1fr 1fr; }
+    .gallery-grid{ grid-template-columns: repeat(2, 1fr); }
+    .gallery-item.wide{ grid-column: span 2; }
+  }
+  @media (max-width: 480px){
+    .services-grid{ grid-template-columns: 1fr; }
+    .quote-card{ padding:24px; }
+    .hero-actions{ flex-direction:column; }
+    .hero-actions .btn{ width:100%; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header>
+  <div class="nav-wrap">
+    <div class="brand">
+      <div class="logo-mark">
+        <!-- Logo placeholder: swap this SVG for your real logo image (e.g. <img src="logo.png">) -->
+        <svg viewBox="0 0 24 24" fill="none" stroke="url(#gGrad)" stroke-width="1.6">
+          <defs>
+            <linearGradient id="gGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#f4e2a1"/>
+              <stop offset="100%" stop-color="#a9812f"/>
+            </linearGradient>
+          </defs>
+          <path d="M3 13l1.5-4.5A2 2 0 0 1 6.4 7h11.2a2 2 0 0 1 1.9 1.5L21 13" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M3 13h18v3a1 1 0 0 1-1 1h-1" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M3 13v3a1 1 0 0 0 1 1h1" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="7.5" cy="17" r="1.6"/>
+          <circle cx="16.5" cy="17" r="1.6"/>
+        </svg>
+      </div>
+      <div>
+        <div class="brand-name">BARKOLI</div>
+        <div class="brand-sub">Trucks &amp; Cars</div>
+      </div>
+    </div>
+    <nav id="mainNav">
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#quote">Get a Quote</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="nav-cta">
+      <a href="#quote" class="btn btn-primary"><span class="txt">Towing Quote</span> →</a>
+      <button class="burger" id="burgerBtn" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="home">
+  <div class="container hero-inner">
+    <div>
+      <div class="hero-logo-big">
+        <svg viewBox="0 0 24 24" fill="none" stroke="url(#gGrad2)" stroke-width="1.4">
+          <defs>
+            <linearGradient id="gGrad2" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#f4e2a1"/>
+              <stop offset="100%" stop-color="#a9812f"/>
+            </linearGradient>
+          </defs>
+          <path d="M3 13l1.5-4.5A2 2 0 0 1 6.4 7h11.2a2 2 0 0 1 1.9 1.5L21 13" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M3 13h18v3a1 1 0 0 1-1 1h-1" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M3 13v3a1 1 0 0 0 1 1h1" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="7.5" cy="17" r="1.6"/>
+          <circle cx="16.5" cy="17" r="1.6"/>
+        </svg>
+      </div>
+      <h1>BARKOLI <span class="gold-text">TRUCKS &amp; CARS</span></h1>
+      <div class="hero-tagline">Reliable Auto Repair &amp; 24/7 Towing You Can Trust</div>
+      <p class="desc">From brake jobs to breakdowns on the highway — our certified mechanics and towing crew keep you moving. Fast response, fair pricing, honest work.</p>
+      <div class="hero-actions">
+        <a href="#quote" class="btn btn-primary">Get a Towing Quote</a>
+        <a href="#services" class="btn btn-outline">Our Services</a>
+      </div>
+      <div class="hero-badges">
+        <div class="hero-badge"><b>24/7</b><span>Towing Response</span></div>
+        <div class="hero-badge"><b>15+</b><span>Years Experience</span></div>
+        <div class="hero-badge"><b>100%</b><span>Certified Mechanics</span></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <h3>Why drivers choose Barkoli</h3>
+      <p>A garage built on speed, transparency and craftsmanship.</p>
+      <div class="mini-row">
+        <div class="mini-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z" stroke-linejoin="round"/></svg></div>
+        <div><b>Licensed &amp; Insured</b><span>Full workshop compliance</span></div>
+      </div>
+      <div class="mini-row">
+        <div class="mini-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 8v4l3 3" stroke-linecap="round"/><circle cx="12" cy="12" r="9"/></svg></div>
+        <div><b>Fast Dispatch</b><span>Towing arrives within minutes</span></div>
+      </div>
+      <div class="mini-row">
+        <div class="mini-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M3 12h4l2-5 4 10 2-5h6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div><b>Transparent Pricing</b><span>Instant WhatsApp quotes</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TOWING QUOTE ============ -->
+<section class="section quote-section" id="quote">
+  <div class="container">
+    <span class="section-tag">Instant Estimate</span>
+    <h2 class="section-title">Get a Towing Quote in Seconds</h2>
+    <p class="section-sub">Enter your pickup and drop-off locations. We'll estimate the distance and send your request straight to our WhatsApp — no forms, no waiting on hold.</p>
+
+    <div class="quote-card">
+      <form id="quoteForm" autocomplete="off">
+        <div class="form-grid">
+          <div class="field">
+            <label for="fromInput">Tow From</label>
+            <input type="text" id="fromInput" placeholder="Start typing an address or place…">
+            <div class="autocomplete-list" id="fromList"></div>
+          </div>
+          <div class="field">
+            <label for="toInput">Tow To</label>
+            <input type="text" id="toInput" placeholder="Start typing an address or place…">
+            <div class="autocomplete-list" id="toList"></div>
+          </div>
+          <div class="field">
+            <label for="nameInput">Your Name</label>
+            <input type="text" id="nameInput" placeholder="John Doe" required>
+          </div>
+          <div class="field">
+            <label for="phoneInput">Your Phone Number</label>
+            <input type="tel" id="phoneInput" placeholder="+49 151 23456789" required>
+          </div>
+        </div>
+
+        <div class="distance-box" id="distanceBox">
+          <div>
+            <div class="dist-value" id="distValue">0 km</div>
+            <div class="dist-label">Estimated straight-line distance</div>
+          </div>
+          <div class="dist-label" style="max-width:260px;">Actual towing distance may vary slightly based on road routing — final price confirmed by our team on WhatsApp.</div>
+        </div>
+
+        <div class="form-error" id="formError">Please select both a "Tow From" and "Tow To" location from the suggestion list, and fill in your name and phone number.</div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn-whatsapp">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.29-1.39a9.87 9.87 0 0 0 4.75 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2m0 1.8c2.16 0 4.19.84 5.71 2.37a8.03 8.03 0 0 1 2.36 5.73c0 4.46-3.63 8.09-8.08 8.09a8.1 8.1 0 0 1-4.12-1.12l-.3-.17-3.14.82.84-3.06-.19-.32a8.02 8.02 0 0 1-1.24-4.31c0-4.46 3.63-8.03 8.16-8.03M8.53 7.06c-.17 0-.45.06-.68.32-.23.25-.9.87-.9 2.13 0 1.25.92 2.46 1.05 2.63.13.17 1.8 2.88 4.45 3.93 2.2.87 2.65.7 3.13.65.48-.04 1.54-.63 1.76-1.24.22-.6.22-1.12.15-1.23-.06-.11-.24-.17-.5-.3-.26-.13-1.54-.76-1.78-.85-.24-.09-.41-.13-.59.13-.17.26-.67.85-.82 1.02-.15.17-.3.19-.56.06-.26-.13-1.09-.4-2.08-1.28-.77-.68-1.29-1.53-1.44-1.79-.15-.26-.02-.4.11-.53.12-.12.26-.3.39-.45.13-.15.17-.26.26-.43.09-.17.04-.32-.02-.45-.06-.13-.59-1.46-.82-1.99-.21-.51-.43-.45-.59-.46-.15-.01-.32-.01-.49-.01z"/></svg>
+            Send Quote via WhatsApp
+          </button>
+          <div class="form-note">You'll be redirected to WhatsApp with your request pre-filled — just hit send.</div>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICES ============ -->
+<section class="section" id="services">
+  <div class="container">
+    <span class="section-tag">What We Do</span>
+    <h2 class="section-title">Full-Service Auto Repair &amp; Towing</h2>
+    <p class="section-sub">From routine maintenance to roadside emergencies, our team handles cars and trucks of every make and model.</p>
+
+    <div class="services-subhead">Auto Repair Services</div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="2.5"/><path d="M12 4v2M12 18v2M4 12h2M18 12h2M6.3 6.3l1.4 1.4M16.3 16.3l1.4 1.4M6.3 17.7l1.4-1.4M16.3 7.7l1.4-1.4" stroke-linecap="round"/></svg></div>
+        <h4>Brake Repair &amp; Service</h4>
+        <p>Pad and rotor replacement, brake fluid flush, and full safety inspections.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M6 3h6l2 3h3a1 1 0 0 1 1 1v3h-1" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 10h9v10H4a1 1 0 0 1-1-1v-8a1 1 0 0 1 1-1z"/><path d="M13 13h4a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-4"/></svg></div>
+        <h4>Oil Change &amp; Fluids</h4>
+        <p>Full synthetic, conventional oil changes plus coolant, transmission and brake fluid top-ups.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 3v4M15 3v4M4 8h16v10a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8z"/><path d="M8 13l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h4>Computer Diagnostics</h4>
+        <p>Advanced scan-tool diagnostics to pinpoint check-engine lights and electrical faults fast.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 2a5 5 0 0 0-5 5c0 3 5 9 5 9s5-6 5-9a5 5 0 0 0-5-5z"/><circle cx="12" cy="7" r="2"/><path d="M6 18h12l1 4H5l1-4z"/></svg></div>
+        <h4>Engine Repair &amp; Overhaul</h4>
+        <p>From timing belts to full rebuilds — restoring performance and reliability.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="4" y="7" width="16" height="12" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M4 13h16" stroke-linecap="round"/></svg></div>
+        <h4>Transmission Service</h4>
+        <p>Automatic and manual transmission repair, fluid service, and clutch replacement.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4 12a8 8 0 0 1 14.5-4.5M20 12a8 8 0 0 1-14.5 4.5" stroke-linecap="round"/><path d="M14 4h4.5V8M10 20H5.5V16" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h4>Tire &amp; Wheel Alignment</h4>
+        <p>Tire replacement, balancing, rotation and precision wheel alignment.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M3 10h18M3 14h18" stroke-linecap="round"/><rect x="3" y="6" width="18" height="12" rx="2"/></svg></div>
+        <h4>Battery &amp; Electrical</h4>
+        <p>Battery testing and replacement, alternator and starter repair, wiring diagnostics.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M6 18h.01M18 18h.01M4 18l-1-6 2-5h9l4 5v6h-2M4 18h2M8 18h8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="7" cy="18" r="1.8"/><circle cx="17" cy="18" r="1.8"/></svg></div>
+        <h4>Suspension &amp; Steering</h4>
+        <p>Shocks, struts, ball joints and steering component repair for a smooth, safe ride.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 3v2M12 19v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M3 12h2M19 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" stroke-linecap="round"/><circle cx="12" cy="12" r="4"/></svg></div>
+        <h4>AC &amp; Heating Repair</h4>
+        <p>Climate control diagnostics, refrigerant recharge, and compressor replacement.</p>
+      </div>
+    </div>
+
+    <div class="services-subhead">Towing &amp; Roadside Services</div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M3 13l1.5-4.5A2 2 0 0 1 6.4 7h11.2a2 2 0 0 1 1.9 1.5L21 13H3z" stroke-linejoin="round"/><path d="M3 13h18v3a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-3z"/><circle cx="7.5" cy="17" r="1.6"/><circle cx="16.5" cy="17" r="1.6"/></svg></div>
+        <h4>Flatbed &amp; Truck Towing</h4>
+        <p>Safe transport for cars, SUVs and light trucks on our flatbed fleet.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 2a10 10 0 1 0 10 10" stroke-linecap="round"/><path d="M12 6v6l4 2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h4>24/7 Emergency Towing</h4>
+        <p>Day or night, our dispatch team is ready to get you off the road safely.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="5" y="9" width="14" height="9" rx="1.5"/><path d="M9 9V6a3 3 0 0 1 6 0v3" stroke-linecap="round"/></svg></div>
+        <h4>Lockout Assistance</h4>
+        <p>Locked out? We'll get your vehicle open quickly without any damage.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 7h6l1 3H8l1-3z"/><path d="M4 18v-5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v5" stroke-linecap="round"/><circle cx="7.5" cy="18" r="1.6"/><circle cx="16.5" cy="18" r="1.6"/></svg></div>
+        <h4>Jump Start &amp; Battery</h4>
+        <p>Dead battery on the road? We'll jump-start or swap it on the spot.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8" stroke-linecap="round"/></svg></div>
+        <h4>Flat Tire Change</h4>
+        <p>Quick roadside tire changes to get you safely back on your way.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M3 12l4-8h10l4 8-4 8H7l-4-8z" stroke-linejoin="round"/></svg></div>
+        <h4>Accident Recovery</h4>
+        <p>Safe, insurance-friendly recovery and transport following a collision.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GALLERY ============ -->
+<section class="section" id="gallery">
+  <div class="container">
+    <span class="section-tag">Our Work</span>
+    <h2 class="section-title">Gallery</h2>
+    <p class="section-sub">A look inside our workshop and towing operations. (Placeholder tiles — replace with real photos of the shop, fleet and completed jobs.)</p>
+
+    <div class="gallery-grid">
+      <div class="gallery-item wide">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M3 13l1.5-4.5A2 2 0 0 1 6.4 7h11.2a2 2 0 0 1 1.9 1.5L21 13H3z" stroke-linejoin="round"/><path d="M3 13h18v3a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-3z"/><circle cx="7.5" cy="17" r="1.6"/><circle cx="16.5" cy="17" r="1.6"/></svg>
+        <span>Towing Fleet</span>
+      </div>
+      <div class="gallery-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M7 21h10M12 18v3" stroke-linecap="round"/></svg>
+        <span>Workshop Bay</span>
+      </div>
+      <div class="gallery-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="2.5"/><path d="M12 4v2M12 18v2M4 12h2M18 12h2" stroke-linecap="round"/></svg>
+        <span>Brake Service</span>
+      </div>
+      <div class="gallery-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M12 2a5 5 0 0 0-5 5c0 3 5 9 5 9s5-6 5-9a5 5 0 0 0-5-5z"/><circle cx="12" cy="7" r="2"/></svg>
+        <span>Engine Repair</span>
+      </div>
+      <div class="gallery-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><rect x="4" y="7" width="16" height="12" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" stroke-linecap="round"/></svg>
+        <span>Diagnostics</span>
+      </div>
+      <div class="gallery-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M4 12a8 8 0 0 1 14.5-4.5M20 12a8 8 0 0 1-14.5 4.5" stroke-linecap="round"/></svg>
+        <span>Wheel Alignment</span>
+      </div>
+      <div class="gallery-item wide">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M3 12l4-8h10l4 8-4 8H7l-4-8z" stroke-linejoin="round"/></svg>
+        <span>Accident Recovery</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="section" id="contact">
+  <div class="container">
+    <span class="section-tag">Get In Touch</span>
+    <h2 class="section-title">Visit Us or Call for Help</h2>
+    <p class="section-sub">Stuck on the road or need a repair booked in? Reach out any time — our towing line runs 24/7.</p>
+
+    <div class="contact-grid">
+      <div class="contact-card">
+        <div class="contact-row">
+          <div class="mini-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></div>
+          <div>
+            <b>Workshop Address</b>
+            <span>Musterstraße 12, 12345 Musterstadt, Germany<br><em style="font-size:0.75rem;color:#7d7863;">(placeholder — update with your real address)</em></span>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="mini-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.5 2.1L8 9.6a16 16 0 0 0 6 6l1.1-1.1a2 2 0 0 1 2.1-.5c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.7 2.3z" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <div>
+            <b>Phone / WhatsApp</b>
+            <a class="link" href="https://wa.me/4915259793030" target="_blank" rel="noopener">+49 1525 9793030</a>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="mini-ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 8h18" stroke-linecap="round"/></svg></div>
+          <div style="width:100%;">
+            <b>Opening Hours</b>
+            <table class="hours-table">
+              <tr><td>Monday – Friday</td><td>08:00 – 18:00</td></tr>
+              <tr><td>Saturday</td><td>09:00 – 14:00</td></tr>
+              <tr><td>Sunday</td><td>Closed (Workshop)</td></tr>
+              <tr class="emergency"><td>Towing &amp; Roadside</td><td>24/7</td></tr>
+            </table>
+          </div>
+        </div>
+        <div style="margin-top:24px; display:flex; gap:14px; flex-wrap:wrap;">
+          <a href="https://wa.me/4915259793030?text=Hello%20Barkoli%20Trucks%20%26%20Cars%2C%20I%27d%20like%20some%20help." target="_blank" rel="noopener" class="btn btn-whatsapp">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="#fff"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.29-1.39a9.87 9.87 0 0 0 4.75 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2m0 1.8c2.16 0 4.19.84 5.71 2.37a8.03 8.03 0 0 1 2.36 5.73c0 4.46-3.63 8.09-8.08 8.09a8.1 8.1 0 0 1-4.12-1.12l-.3-.17-3.14.82.84-3.06-.19-.32a8.02 8.02 0 0 1-1.24-4.31c0-4.46 3.63-8.03 8.16-8.03"/></svg>
+            Chat on WhatsApp
+          </a>
+          <a href="tel:+4915259793030" class="btn btn-outline">Call Us</a>
+        </div>
+      </div>
+
+      <div class="contact-card">
+        <b style="display:block;margin-bottom:14px;">Find Us</b>
+        <div class="map-frame">
+          <!-- Placeholder map embed — replace the query in the src URL with your real address -->
+          <iframe loading="lazy" src="https://www.openstreetmap.org/export/embed.html?bbox=13.35%2C52.48%2C13.45%2C52.53&layer=mapnik" title="Map"></iframe>
+        </div>
+        <p style="font-size:0.85rem;color:var(--text-muted);margin-top:16px;">
+          Prefer to message us directly? Use the towing quote form above for an instant distance estimate, or tap "Chat on WhatsApp" for general questions, appointment booking, or repair estimates.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    &copy; <span id="year"></span> <span class="gold-text">Barkoli Trucks &amp; Cars</span>. All rights reserved.
+  </div>
+</footer>
+
+<a href="https://wa.me/4915259793030" target="_blank" rel="noopener" class="float-wa" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.29-1.39a9.87 9.87 0 0 0 4.75 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2m0 1.8c2.16 0 4.19.84 5.71 2.37a8.03 8.03 0 0 1 2.36 5.73c0 4.46-3.63 8.09-8.08 8.09a8.1 8.1 0 0 1-4.12-1.12l-.3-.17-3.14.82.84-3.06-.19-.32a8.02 8.02 0 0 1-1.24-4.31c0-4.46 3.63-8.03 8.16-8.03"/></svg>
+</a>
+
+<script>
+(function(){
+  "use strict";
+
+  // ---------- CONFIG ----------
+  var WHATSAPP_NUMBER = "4915259793030"; // +49 1525 9793030, formatted for wa.me (no +, no spaces)
+
+  // ---------- MOBILE NAV ----------
+  var burger = document.getElementById('burgerBtn');
+  var nav = document.getElementById('mainNav');
+  burger.addEventListener('click', function(){
+    nav.classList.toggle('open');
+  });
+  nav.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){ nav.classList.remove('open'); });
+  });
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // ---------- AUTOCOMPLETE (OpenStreetMap Nominatim) ----------
+  function setupAutocomplete(inputId, listId, onSelect){
+    var input = document.getElementById(inputId);
+    var list = document.getElementById(listId);
+    var timer = null;
+    var currentSelection = null;
+    var lastQuery = "";
+
+    function clearList(){
+      list.innerHTML = "";
+      list.classList.remove('active');
+    }
+
+    function renderResults(results){
+      list.innerHTML = "";
+      if(!results.length){
+        var empty = document.createElement('div');
+        empty.className = 'ac-empty';
+        empty.textContent = 'No matches found';
+        list.appendChild(empty);
+        list.classList.add('active');
+        return;
+      }
+      results.forEach(function(r){
+        var item = document.createElement('div');
+        item.textContent = r.display_name;
+        item.addEventListener('click', function(){
+          input.value = r.display_name;
+          currentSelection = { lat: parseFloat(r.lat), lon: parseFloat(r.lon), label: r.display_name };
+          onSelect(currentSelection);
+          clearList();
+        });
+        list.appendChild(item);
+      });
+      list.classList.add('active');
+    }
+
+    input.addEventListener('input', function(){
+      var query = input.value.trim();
+      currentSelection = null;
+      onSelect(null);
+
+      if(timer) clearTimeout(timer);
+      if(query.length < 3){
+        clearList();
+        return;
+      }
+
+      timer = setTimeout(function(){
+        lastQuery = query;
+        list.innerHTML = '<div class="ac-loading">Searching…</div>';
+        list.classList.add('active');
+
+        var url = "https://nominatim.openstreetmap.org/search?format=json&addressdetails=0&limit=6&q=" + encodeURIComponent(query);
+        fetch(url, { headers: { 'Accept': 'application/json' } })
+          .then(function(res){ return res.json(); })
+          .then(function(data){
+            if(query === lastQuery){ renderResults(data || []); }
+          })
+          .catch(function(){
+            list.innerHTML = '<div class="ac-empty">Search unavailable — check your connection</div>';
+          });
+      }, 450);
+    });
+
+    input.addEventListener('blur', function(){
+      setTimeout(clearList, 200);
+    });
+    input.addEventListener('focus', function(){
+      if(list.children.length) list.classList.add('active');
+    });
+
+    return {
+      getSelection: function(){ return currentSelection; }
+    };
+  }
+
+  var fromState = null, toState = null;
+  var fromAC = setupAutocomplete('fromInput', 'fromList', function(sel){ fromState = sel; updateDistance(); });
+  var toAC = setupAutocomplete('toInput', 'toList', function(sel){ toState = sel; updateDistance(); });
+
+  // ---------- HAVERSINE DISTANCE ----------
+  function haversineKm(lat1, lon1, lat2, lon2){
+    var R = 6371;
+    var dLat = (lat2 - lat1) * Math.PI / 180;
+    var dLon = (lon2 - lon1) * Math.PI / 180;
+    var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+            Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+            Math.sin(dLon/2) * Math.sin(dLon/2);
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    return R * c;
+  }
+
+  var distanceBox = document.getElementById('distanceBox');
+  var distValue = document.getElementById('distValue');
+  var currentDistanceKm = null;
+
+  function updateDistance(){
+    if(fromState && toState){
+      currentDistanceKm = haversineKm(fromState.lat, fromState.lon, toState.lat, toState.lon);
+      distValue.textContent = currentDistanceKm.toFixed(1) + ' km';
+      distanceBox.classList.add('active');
+    } else {
+      currentDistanceKm = null;
+      distanceBox.classList.remove('active');
+    }
+  }
+
+  // ---------- FORM SUBMIT -> WHATSAPP ----------
+  var form = document.getElementById('quoteForm');
+  var formError = document.getElementById('formError');
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+
+    var name = document.getElementById('nameInput').value.trim();
+    var phone = document.getElementById('phoneInput').value.trim();
+
+    if(!fromState || !toState || !name || !phone){
+      formError.classList.add('active');
+      return;
+    }
+    formError.classList.remove('active');
+
+    var distanceLabel = currentDistanceKm !== null ? currentDistanceKm.toFixed(1) + ' km' : 'n/a';
+
+    var message =
+      "Hello Barkoli Trucks & Cars, I'd like a towing quote:\n\n" +
+      "Name: " + name + "\n" +
+      "Phone: " + phone + "\n" +
+      "From: " + fromState.label + "\n" +
+      "To: " + toState.label + "\n" +
+      "Estimated distance: " + distanceLabel + " (straight-line)\n\n" +
+      "Please confirm the price and ETA. Thank you!";
+
+    var url = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(message);
+    window.open(url, '_blank');
+  });
+
+})();
+</script>
+
+</body>
+</html>
