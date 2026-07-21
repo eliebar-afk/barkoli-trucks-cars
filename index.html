@@ -71,6 +71,8 @@
     color:#fff;
   }
   .btn-whatsapp:hover{ transform: translateY(-2px); box-shadow: 0 10px 24px rgba(30,169,82,0.35); }
+  .btn-sm{ padding:7px 16px; font-size:0.78rem; gap:6px; margin-top:8px; }
+  .btn-sm svg{ width:14px; height:14px; }
   .section{ padding: 90px 0; position:relative; }
   .section-tag{
     display:inline-block;
@@ -895,6 +897,10 @@
           <div>
             <b data-i18n="contact.addressLabel">Workshop Address</b>
             <span data-i18n="contact.addressValue">Borsigstraße 25, 48599 Gronau (Westfalen), Germany</span>
+            <a href="https://www.google.com/maps/dir/?api=1&destination=52.2064,7.0286" target="_blank" rel="noopener" class="btn btn-outline btn-sm">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+              <span data-i18n="contact.directionsBtn">Get Directions</span>
+            </a>
           </div>
         </div>
         <div class="contact-row">
@@ -1008,7 +1014,7 @@
       gallery: { tag:"Our Work", title:"Gallery", sub:"A look inside our workshop and towing operations. (Placeholder tiles — replace with real photos of the shop, fleet and completed jobs.)", towingFleet:"Towing Fleet", workshopBay:"Workshop Bay", brakeService:"Brake Service", engineRepair:"Engine Repair", diagnostics:"Diagnostics", wheelAlignment:"Wheel Alignment", accidentRecovery:"Accident Recovery" },
       contact: {
         tag:"Get In Touch", title:"Visit Us or Call for Help", sub:"Stuck on the road or need a repair booked in? Reach out any time — our towing line runs 24/7.",
-        addressLabel:"Workshop Address", addressValue:"Borsigstraße 25, 48599 Gronau (Westfalen), Germany",
+        addressLabel:"Workshop Address", addressValue:"Borsigstraße 25, 48599 Gronau (Westfalen), Germany", directionsBtn:"Get Directions",
         phoneLabel:"Phone / WhatsApp",
         hoursLabel:"Opening Hours", hoursMonFriLabel:"Monday – Friday", hoursMonFriValue:"09:00 – 19:00", hoursSatLabel:"Saturday", hoursSatValue:"09:00 – 14:00", hoursSunLabel:"Sunday", hoursSunValue:"Closed (Workshop)", hoursTowingLabel:"Towing & Roadside", hoursTowingValue:"24/7",
         chatBtn:"Chat on WhatsApp", callBtn:"Call Us", findUs:"Find Us",
@@ -1062,7 +1068,7 @@
       gallery: { tag:"Unsere Arbeit", title:"Galerie", sub:"Ein Einblick in unsere Werkstatt und den Abschleppbetrieb. (Platzhalterbilder — durch echte Fotos von Werkstatt, Flotte und abgeschlossenen Aufträgen ersetzen.)", towingFleet:"Abschleppflotte", workshopBay:"Werkstatthalle", brakeService:"Bremsenservice", engineRepair:"Motorreparatur", diagnostics:"Diagnose", wheelAlignment:"Achsvermessung", accidentRecovery:"Unfallbergung" },
       contact: {
         tag:"Kontaktieren Sie uns", title:"Besuchen Sie uns oder rufen Sie an", sub:"Auf der Straße liegengeblieben oder eine Reparatur nötig? Melden Sie sich jederzeit — unser Abschleppdienst ist rund um die Uhr erreichbar.",
-        addressLabel:"Werkstattadresse", addressValue:"Borsigstraße 25, 48599 Gronau (Westfalen), Deutschland",
+        addressLabel:"Werkstattadresse", addressValue:"Borsigstraße 25, 48599 Gronau (Westfalen), Deutschland", directionsBtn:"Route anzeigen",
         phoneLabel:"Telefon / WhatsApp",
         hoursLabel:"Öffnungszeiten", hoursMonFriLabel:"Montag – Freitag", hoursMonFriValue:"09:00 – 19:00 Uhr", hoursSatLabel:"Samstag", hoursSatValue:"09:00 – 14:00 Uhr", hoursSunLabel:"Sonntag", hoursSunValue:"Geschlossen (Werkstatt)", hoursTowingLabel:"Abschlepp- & Pannendienst", hoursTowingValue:"24/7",
         chatBtn:"Auf WhatsApp chatten", callBtn:"Anrufen", findUs:"So finden Sie uns",
@@ -1116,7 +1122,7 @@
       gallery: { tag:"Ons werk", title:"Galerij", sub:"Een kijkje in onze werkplaats en sleepactiviteiten. (Placeholder-afbeeldingen — vervang door echte foto's van de werkplaats, het wagenpark en afgeronde klussen.)", towingFleet:"Sleepwagenpark", workshopBay:"Werkplaats", brakeService:"Remservice", engineRepair:"Motorreparatie", diagnostics:"Diagnose", wheelAlignment:"Wieluitlijning", accidentRecovery:"Bergen na ongeval" },
       contact: {
         tag:"Neem contact op", title:"Bezoek ons of bel voor hulp", sub:"Pech onderweg of een reparatie nodig? Neem altijd contact op — onze sleeplijn is 24/7 bereikbaar.",
-        addressLabel:"Werkplaatsadres", addressValue:"Borsigstraße 25, 48599 Gronau (Westfalen), Duitsland",
+        addressLabel:"Werkplaatsadres", addressValue:"Borsigstraße 25, 48599 Gronau (Westfalen), Duitsland", directionsBtn:"Routebeschrijving",
         phoneLabel:"Telefoon / WhatsApp",
         hoursLabel:"Openingstijden", hoursMonFriLabel:"Maandag – vrijdag", hoursMonFriValue:"09:00 – 19:00", hoursSatLabel:"Zaterdag", hoursSatValue:"09:00 – 14:00", hoursSunLabel:"Zondag", hoursSunValue:"Gesloten (werkplaats)", hoursTowingLabel:"Slepen & pechhulp", hoursTowingValue:"24/7",
         chatBtn:"Chat via WhatsApp", callBtn:"Bel ons", findUs:"Vind ons",
@@ -1170,7 +1176,7 @@
       gallery: { tag:"أعمالنا", title:"معرض الصور", sub:"لمحة داخل ورشتنا وعمليات السحب. (صور مؤقتة — استبدلها بصور حقيقية للورشة والأسطول والأعمال المنجزة.)", towingFleet:"أسطول السحب", workshopBay:"صالة الورشة", brakeService:"خدمة الفرامل", engineRepair:"إصلاح المحرك", diagnostics:"الفحص", wheelAlignment:"ضبط الزوايا", accidentRecovery:"استرجاع بعد الحوادث" },
       contact: {
         tag:"تواصل معنا", title:"زرنا أو اتصل للحصول على المساعدة", sub:"هل تعطلت سيارتك على الطريق أو تحتاج لحجز موعد إصلاح؟ تواصل معنا في أي وقت — خط السحب لدينا يعمل على مدار الساعة.",
-        addressLabel:"عنوان الورشة", addressValue:"Borsigstraße 25, 48599 Gronau (Westfalen)، ألمانيا",
+        addressLabel:"عنوان الورشة", addressValue:"Borsigstraße 25, 48599 Gronau (Westfalen)، ألمانيا", directionsBtn:"الحصول على الاتجاهات",
         phoneLabel:"الهاتف / واتساب",
         hoursLabel:"ساعات العمل", hoursMonFriLabel:"الاثنين – الجمعة", hoursMonFriValue:"09:00 – 19:00", hoursSatLabel:"السبت", hoursSatValue:"09:00 – 14:00", hoursSunLabel:"الأحد", hoursSunValue:"مغلق (الورشة)", hoursTowingLabel:"السحب والمساعدة على الطريق", hoursTowingValue:"24/7",
         chatBtn:"تواصل عبر واتساب", callBtn:"اتصل بنا", findUs:"موقعنا",
