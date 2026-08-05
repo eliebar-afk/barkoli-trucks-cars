@@ -1,12 +1,12 @@
 :root{
-  --gold: #d4af37;
-  --gold-light: #f4e2a1;
-  --gold-dark: #a9812f;
-  --gold-gradient: linear-gradient(135deg, #f4e2a1 0%, #d4af37 45%, #a9812f 100%);
-  --black: #0a0a0a;
-  --black-soft: #131313;
-  --black-card: #1a1a1a;
-  --border-gold: rgba(212,175,55,0.35);
+  --gold: #c9a24d;
+  --gold-light: #d9bc78;
+  --gold-dark: #8f7038;
+  --gold-gradient: linear-gradient(135deg, #d9bc78 0%, #c9a24d 50%, #8f7038 100%);
+  --black: #131210;
+  --black-soft: #1a1917;
+  --black-card: #211f1c;
+  --border-gold: rgba(201,162,77,0.28);
   --text-muted: #b9b3a2;
   --radius: 14px;
   --maxw: 1180px;
