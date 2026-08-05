@@ -51,6 +51,11 @@ button, input, select{ font-family:inherit; }
 .btn-danger{ border-color: rgba(224,92,92,0.5); color:#f3b9b9; }
 .btn-danger:hover{ background: rgba(224,92,92,0.12); border-color:#e05c5c; }
 .btn-sm{ padding:.35rem .7rem; font-size:.8rem; }
+.btn-google{
+  width:100%; background:#fff; color:#1f1f1f; border:1px solid #fff;
+  gap:.6rem; padding:.7rem 1rem; font-weight:600;
+}
+.btn-google:hover{ background:#f4f4f4; border-color:#f4f4f4; }
 
 /* Login */
 .login-screen{
