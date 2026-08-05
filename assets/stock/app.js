@@ -2,8 +2,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/fireba
 import {
   getAuth,
   GoogleAuthProvider,
-  signInWithRedirect,
-  getRedirectResult,
+  signInWithPopup,
   onAuthStateChanged,
   signOut,
 } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
@@ -67,21 +66,16 @@ function runApp() {
     loginError.textContent = "";
     googleSignInBtn.disabled = true;
     try {
-      await signInWithRedirect(auth, new GoogleAuthProvider());
+      await signInWithPopup(auth, new GoogleAuthProvider());
     } catch (err) {
       console.error(err);
       loginError.textContent = `Sign-in failed: ${err.code || err.message}`;
-      googleSignInBtn.disabled = false;
     }
+    googleSignInBtn.disabled = false;
   });
 
   logoutBtn.addEventListener("click", async () => {
     await signOut(auth);
-  });
-
-  getRedirectResult(auth).catch((err) => {
-    console.error(err);
-    loginError.textContent = `Sign-in failed: ${err.code || err.message}`;
   });
 
   onAuthStateChanged(auth, async (user) => {
