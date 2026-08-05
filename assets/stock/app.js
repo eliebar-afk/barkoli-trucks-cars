@@ -2,7 +2,8 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/fireba
 import {
   getAuth,
   GoogleAuthProvider,
-  signInWithPopup,
+  signInWithRedirect,
+  getRedirectResult,
   onAuthStateChanged,
   signOut,
 } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
@@ -66,16 +67,21 @@ function runApp() {
     loginError.textContent = "";
     googleSignInBtn.disabled = true;
     try {
-      await signInWithPopup(auth, new GoogleAuthProvider());
+      await signInWithRedirect(auth, new GoogleAuthProvider());
     } catch (err) {
       console.error(err);
-      loginError.textContent = "Sign-in failed. Please try again.";
+      loginError.textContent = `Sign-in failed: ${err.code || err.message}`;
+      googleSignInBtn.disabled = false;
     }
-    googleSignInBtn.disabled = false;
   });
 
   logoutBtn.addEventListener("click", async () => {
     await signOut(auth);
+  });
+
+  getRedirectResult(auth).catch((err) => {
+    console.error(err);
+    loginError.textContent = `Sign-in failed: ${err.code || err.message}`;
   });
 
   onAuthStateChanged(auth, async (user) => {
