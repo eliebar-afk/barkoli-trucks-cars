@@ -6,10 +6,22 @@
 <title>Stock Tracker | Barkoli Trucks &amp; Cars</title>
 <meta name="robots" content="noindex, nofollow">
 <link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="manifest" href="assets/stock/manifest.json">
+<meta name="theme-color" content="#0a0a0a">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Stock Tracker">
+<link rel="apple-touch-icon" href="assets/stock/icons/icon-192.png">
 <link href="assets/fonts/fonts.css" rel="stylesheet">
 <link href="assets/stock/style.css" rel="stylesheet">
 </head>
 <body>
+
+<div id="pullRefreshIndicator" class="pull-refresh">
+  <span class="pull-refresh-spinner"></span>
+  <span class="pull-refresh-text">Pull to refresh</span>
+</div>
 
 <div id="configWarning" class="hidden" style="max-width:560px;margin:4rem auto;padding:1.5rem;border:1px solid var(--border-gold);border-radius:14px;background:var(--black-card);">
   <h2 style="margin-bottom:.6rem;">Setup needed</h2>

@@ -147,6 +147,24 @@ button, input, select{ font-family:inherit; }
 .totals-box .row.profit.neg{ color: var(--red); }
 .modal-actions{ display:flex; gap:.6rem; margin-top:1.4rem; flex-wrap:wrap; }
 
+/* Pull to refresh */
+.pull-refresh{
+  position:fixed; top:-56px; left:50%; transform:translateX(-50%);
+  display:flex; align-items:center; gap:.5rem;
+  padding:.55rem 1.1rem; border-radius:0 0 12px 12px;
+  background: var(--black-card); border:1px solid var(--border-gold); border-top:none;
+  z-index:200; transition: top .2s ease;
+}
+.pull-refresh-spinner{
+  width:16px; height:16px; border-radius:50%;
+  border:2px solid var(--border-gold); border-top-color: var(--gold);
+  flex-shrink:0;
+}
+.pull-refresh.ready .pull-refresh-spinner{ border-top-color: var(--gold-light); }
+.pull-refresh.loading .pull-refresh-spinner{ animation: pull-refresh-spin .7s linear infinite; }
+.pull-refresh-text{ font-size:.8rem; color:var(--text-muted); white-space:nowrap; }
+@keyframes pull-refresh-spin{ to{ transform: rotate(360deg); } }
+
 .hidden{ display:none !important; }
 
 @media (max-width:520px){

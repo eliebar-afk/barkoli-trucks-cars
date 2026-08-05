@@ -418,5 +418,79 @@
     await loadCars();
   }
 
+  // ---------- Pull to refresh ----------
+
+  function setupPullToRefresh() {
+    const indicator = $("#pullRefreshIndicator");
+    const spinnerText = $(".pull-refresh-text", indicator);
+    const threshold = 70;
+    const maxPull = 110;
+    const restY = -56;
+    let startY = 0;
+    let pulling = false;
+    let currentPull = 0;
+
+    function atTop() {
+      return (window.scrollY || document.documentElement.scrollTop || 0) <= 0;
+    }
+
+    function modalOpen() {
+      return !addCarModal.classList.contains("hidden") || !carModal.classList.contains("hidden");
+    }
+
+    document.addEventListener(
+      "touchstart",
+      (e) => {
+        if (dashboard.classList.contains("hidden") || modalOpen() || !atTop()) return;
+        startY = e.touches[0].clientY;
+        pulling = true;
+        indicator.style.transition = "none";
+      },
+      { passive: true }
+    );
+
+    document.addEventListener(
+      "touchmove",
+      (e) => {
+        if (!pulling) return;
+        const dy = e.touches[0].clientY - startY;
+        if (dy <= 0 || !atTop()) {
+          pulling = false;
+          indicator.style.transition = "";
+          indicator.style.top = restY + "px";
+          indicator.classList.remove("ready");
+          return;
+        }
+        currentPull = Math.min(dy, maxPull);
+        e.preventDefault();
+        indicator.style.top = restY + currentPull + "px";
+        const ready = currentPull >= threshold;
+        indicator.classList.toggle("ready", ready);
+        spinnerText.textContent = ready ? "Release to refresh" : "Pull to refresh";
+      },
+      { passive: false }
+    );
+
+    document.addEventListener("touchend", async () => {
+      if (!pulling) return;
+      pulling = false;
+      indicator.style.transition = "";
+      if (currentPull >= threshold) {
+        indicator.style.top = "12px";
+        indicator.classList.add("loading");
+        spinnerText.textContent = "Refreshing...";
+        await loadCars();
+        indicator.classList.remove("loading", "ready");
+        indicator.style.top = restY + "px";
+        spinnerText.textContent = "Pull to refresh";
+      } else {
+        indicator.classList.remove("ready");
+        indicator.style.top = restY + "px";
+      }
+      currentPull = 0;
+    });
+  }
+
+  setupPullToRefresh();
   checkSession();
 })();
