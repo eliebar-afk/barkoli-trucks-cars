@@ -61,6 +61,14 @@ function runApp() {
   const googleSignInBtn = $("#googleSignInBtn");
   const loginError = $("#loginError");
   const logoutBtn = $("#logoutBtn");
+  const standaloneHint = $("#standaloneHint");
+  const openInBrowserLink = $("#openInBrowserLink");
+
+  const isStandalone =
+    window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone === true;
+  if (isStandalone) {
+    openInBrowserLink.href = location.href;
+  }
 
   googleSignInBtn.addEventListener("click", async () => {
     loginError.textContent = "";
@@ -82,6 +90,7 @@ function runApp() {
     if (!user) {
       loginScreen.classList.remove("hidden");
       dashboard.classList.add("hidden");
+      standaloneHint.classList.toggle("hidden", !isStandalone);
       return;
     }
     if ((user.email || "").toLowerCase() !== cfg.allowedEmail.toLowerCase()) {
