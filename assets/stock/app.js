@@ -230,6 +230,7 @@ function runApp() {
       vinPlate: $("#carVin").value.trim() || null,
       purchaseDate: $("#carPurchaseDate").value || null,
       buyingPrice: $("#carBuyingPrice").value ? Number($("#carBuyingPrice").value) : 0,
+      askingPrice: $("#carAskingPrice").value ? Number($("#carAskingPrice").value) : null,
       notes: $("#carNotes").value.trim() || null,
       status: "in_stock",
       sellingPrice: null,
@@ -283,6 +284,7 @@ function runApp() {
   function renderCarModalView(car) {
     const totalCost = carTotalCost(car);
     const profit = carProfit(car);
+    const expectedProfit = car.askingPrice != null ? Number(car.askingPrice) - totalCost : null;
     const costsHtml = (car.costs || [])
       .slice()
       .sort((a, b) => (a.createdAt || 0) - (b.createdAt || 0))
@@ -328,6 +330,9 @@ function runApp() {
           car.status === "sold"
             ? `<div class="row"><span>Selling price</span><span>${money(car.sellingPrice)}</span></div>
                <div class="row profit ${profit < 0 ? "neg" : ""}"><span>Profit</span><span>${money(profit)}</span></div>`
+            : car.askingPrice != null
+            ? `<div class="row"><span>Asking price</span><span>${money(car.askingPrice)}</span></div>
+               <div class="row profit ${expectedProfit < 0 ? "neg" : ""}"><span>Expected profit</span><span>${money(expectedProfit)}</span></div>`
             : ""
         }
       </div>
@@ -344,7 +349,7 @@ function runApp() {
 
       <div id="soldFormWrap" class="hidden" style="margin-top:1rem;border-top:1px solid var(--border-gold);padding-top:1rem;">
         <div class="grid-2">
-          <div class="field"><label>Selling price (€)</label><input id="soldPrice" type="number" step="0.01"></div>
+          <div class="field"><label>Selling price (€)</label><input id="soldPrice" type="number" step="0.01" value="${car.askingPrice ?? ""}"></div>
           <div class="field"><label>Sold date</label><input id="soldDate" type="date" value="${new Date().toISOString().slice(0, 10)}"></div>
         </div>
         <button type="button" class="btn btn-gold btn-sm" id="confirmSoldBtn">Confirm sale</button>
@@ -393,6 +398,12 @@ function runApp() {
         <div class="field"><label>VIN / Plate</label><input id="editVin" value="${escapeHtml(car.vinPlate || "")}"></div>
         <div class="field"><label>Purchase date</label><input id="editPurchaseDate" type="date" value="${car.purchaseDate || ""}"></div>
         <div class="field"><label>Buying price (€)</label><input id="editBuyingPrice" type="number" step="0.01" value="${car.buyingPrice ?? 0}"></div>
+        <div class="field"><label>Asking price (€)</label><input id="editAskingPrice" type="number" step="0.01" value="${car.askingPrice ?? ""}"></div>
+        ${
+          car.status === "sold"
+            ? `<div class="field"><label>Selling price (€)</label><input id="editSellingPrice" type="number" step="0.01" value="${car.sellingPrice ?? ""}"></div>`
+            : ""
+        }
       </div>
       <div class="field"><label>Notes</label><input id="editNotes" value="${escapeHtml(car.notes || "")}"></div>
 
@@ -433,9 +444,14 @@ function runApp() {
       vinPlate: $("#editVin").value.trim() || null,
       purchaseDate: $("#editPurchaseDate").value || null,
       buyingPrice: $("#editBuyingPrice").value ? Number($("#editBuyingPrice").value) : 0,
+      askingPrice: $("#editAskingPrice").value ? Number($("#editAskingPrice").value) : null,
       notes: $("#editNotes").value.trim() || null,
       updatedAt: serverTimestamp(),
     };
+    const editSellingPrice = $("#editSellingPrice");
+    if (editSellingPrice) {
+      payload.sellingPrice = editSellingPrice.value ? Number(editSellingPrice.value) : null;
+    }
     try {
       await updateDoc(doc(db, "cars", openCarId), payload);
     } catch (err) {
@@ -451,6 +467,7 @@ function runApp() {
   function captureEditFields() {
     const makeInput = $("#editMake");
     if (!makeInput) return null;
+    const editSellingPrice = $("#editSellingPrice");
     return {
       make: makeInput.value,
       model: $("#editModel").value,
@@ -458,6 +475,8 @@ function runApp() {
       vin: $("#editVin").value,
       purchaseDate: $("#editPurchaseDate").value,
       buyingPrice: $("#editBuyingPrice").value,
+      askingPrice: $("#editAskingPrice").value,
+      sellingPrice: editSellingPrice ? editSellingPrice.value : undefined,
       notes: $("#editNotes").value,
     };
   }
@@ -471,6 +490,11 @@ function runApp() {
     $("#editVin").value = values.vin;
     $("#editPurchaseDate").value = values.purchaseDate;
     $("#editBuyingPrice").value = values.buyingPrice;
+    $("#editAskingPrice").value = values.askingPrice;
+    const editSellingPrice = $("#editSellingPrice");
+    if (editSellingPrice && values.sellingPrice !== undefined) {
+      editSellingPrice.value = values.sellingPrice;
+    }
     $("#editNotes").value = values.notes;
   }
 
