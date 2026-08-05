@@ -147,13 +147,15 @@ button, input, select{ font-family:inherit; }
 .cost-line{ display:flex; align-items:center; gap:.6rem; padding:.4rem 0; }
 .cost-line .lbl{ flex:1; font-size:.9rem; }
 .cost-line .amt{ font-weight:600; min-width:80px; text-align:right; }
-.add-cost-row{ display:flex; gap:.5rem; margin-top:.8rem; }
+.add-cost-row{ display:flex; flex-wrap:wrap; gap:.5rem; margin-top:.8rem; }
 .add-cost-row input{
   padding:.5rem .7rem; border-radius:8px; border:1px solid var(--border-gold);
   background: var(--black-soft); color:#f3f1ea; font-size:.85rem;
+  min-width:0;
 }
-.add-cost-row input.lbl-input{ flex:1; }
-.add-cost-row input.amt-input{ width:110px; }
+.add-cost-row input.lbl-input{ flex:1 1 100%; }
+.add-cost-row input.amt-input{ flex:1 1 auto; }
+.add-cost-row button{ flex:0 0 auto; }
 .totals-box{
   margin-top:1.2rem; padding-top:1rem; border-top:1px solid var(--border-gold);
 }
