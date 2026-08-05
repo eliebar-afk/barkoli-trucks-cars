@@ -17,14 +17,14 @@
 
 window.STOCK_CONFIG = {
   firebaseConfig: {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-    projectId: "YOUR_PROJECT_ID",
-    storageBucket: "YOUR_PROJECT_ID.appspot.com",
-    messagingSenderId: "YOUR_SENDER_ID",
-    appId: "YOUR_APP_ID",
+    apiKey: "AIzaSyAE4g7LhBgFJ09ZCElCrGOZsVtdf80og5c",
+    authDomain: "barkoli-stock-management.firebaseapp.com",
+    projectId: "barkoli-stock-management",
+    storageBucket: "barkoli-stock-management.firebasestorage.app",
+    messagingSenderId: "416823525801",
+    appId: "1:416823525801:web:f5169cd7900953746584b8",
   },
   // Only this Google account is allowed to sign in (checked client-side; the
   // real access control is the matching email check in firestore.rules).
-  allowedEmail: "YOUR_GOOGLE_EMAIL@gmail.com",
+  allowedEmail: "info@barkoli.de",
 };
