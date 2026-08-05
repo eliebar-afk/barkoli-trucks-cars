@@ -137,6 +137,12 @@ button, input, select{ font-family:inherit; }
   float:right; background:none; border:none; color:var(--text-muted); font-size:1.4rem; cursor:pointer; line-height:1;
 }
 .grid-2{ display:grid; grid-template-columns:1fr 1fr; gap:0 1rem; }
+.detail-rows{ margin-bottom:.4rem; }
+.detail-rows .row{ display:flex; justify-content:space-between; padding:.35rem 0; font-size:.9rem; border-bottom:1px solid rgba(212,175,55,0.12); }
+.detail-rows .row:last-child{ border-bottom:none; }
+.detail-rows .k{ color:var(--text-muted); }
+.detail-rows .v{ font-weight:600; }
+
 .costs-list{ border-top:1px solid var(--border-gold); margin-top:1rem; padding-top:1rem; }
 .cost-line{ display:flex; align-items:center; gap:.6rem; padding:.4rem 0; }
 .cost-line .lbl{ flex:1; font-size:.9rem; }
