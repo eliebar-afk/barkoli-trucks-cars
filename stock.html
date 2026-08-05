@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stock Tracker | Barkoli Trucks &amp; Cars</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link href="assets/fonts/fonts.css" rel="stylesheet">
+<link href="assets/stock/style.css" rel="stylesheet">
+</head>
+<body>
+
+<div id="configWarning" class="hidden" style="max-width:560px;margin:4rem auto;padding:1.5rem;border:1px solid var(--border-gold);border-radius:14px;background:var(--black-card);">
+  <h2 style="margin-bottom:.6rem;">Setup needed</h2>
+  <p style="color:var(--text-muted);font-size:.9rem;">
+    This page isn't connected to a database yet. Open <code>assets/stock/config.js</code> and fill in your
+    Supabase project URL and anon key (see the comments in that file and <code>supabase/schema.sql</code> for setup steps).
+  </p>
+</div>
+
+<div id="loginScreen" class="login-screen hidden">
+  <div class="login-card">
+    <img src="assets/logo-full.png" alt="Barkoli Trucks & Cars">
+    <h1>Stock Tracker</h1>
+    <p class="sub">Sign in to manage your car inventory</p>
+    <form id="loginForm">
+      <div class="field">
+        <label for="loginEmail">Email</label>
+        <input type="email" id="loginEmail" required autocomplete="username">
+      </div>
+      <div class="field">
+        <label for="loginPassword">Password</label>
+        <input type="password" id="loginPassword" required autocomplete="current-password">
+      </div>
+      <button type="submit" class="btn btn-gold" style="width:100%;">Sign in</button>
+      <div class="error-msg" id="loginError"></div>
+    </form>
+  </div>
+</div>
+
+<div id="dashboard" class="hidden">
+  <div class="topbar">
+    <div class="brand">
+      <img src="assets/logo-full.png" alt="Barkoli Trucks & Cars">
+      <span class="brand-name">STOCK <b>TRACKER</b></span>
+    </div>
+    <button class="btn btn-sm" id="logoutBtn">Log out</button>
+  </div>
+
+  <div class="wrap">
+    <div class="summary-row">
+      <div class="summary-card">
+        <div class="label">In stock</div>
+        <div class="value" id="sumInStock">0</div>
+      </div>
+      <div class="summary-card">
+        <div class="label">Capital invested</div>
+        <div class="value" id="sumCapital">€0</div>
+      </div>
+      <div class="summary-card">
+        <div class="label">Sold</div>
+        <div class="value" id="sumSold">0</div>
+      </div>
+      <div class="summary-card">
+        <div class="label">Total profit</div>
+        <div class="value" id="sumProfit">€0</div>
+      </div>
+    </div>
+
+    <div class="section-head">
+      <div class="tabs">
+        <button class="tab active" data-tab="in_stock">In Stock</button>
+        <button class="tab" data-tab="sold">Sold</button>
+        <button class="tab" data-tab="all">All</button>
+      </div>
+      <button class="btn btn-gold" id="addCarBtn">+ Add car</button>
+    </div>
+
+    <div class="car-grid" id="carGrid"></div>
+    <div class="empty-state hidden" id="emptyState">No cars here yet.</div>
+  </div>
+</div>
+
+<!-- Add car modal -->
+<div class="modal-backdrop hidden" id="addCarModal">
+  <div class="modal">
+    <button class="close-x" data-close-modal>&times;</button>
+    <h2>Add a car</h2>
+    <form id="addCarForm">
+      <div class="grid-2">
+        <div class="field"><label for="carMake">Make *</label><input id="carMake" required></div>
+        <div class="field"><label for="carModel">Model</label><input id="carModel"></div>
+        <div class="field"><label for="carYear">Year</label><input id="carYear" type="number"></div>
+        <div class="field"><label for="carVin">VIN / Plate</label><input id="carVin"></div>
+        <div class="field"><label for="carPurchaseDate">Purchase date</label><input id="carPurchaseDate" type="date"></div>
+        <div class="field"><label for="carBuyingPrice">Buying price (€) *</label><input id="carBuyingPrice" type="number" step="0.01" required></div>
+      </div>
+      <div class="field"><label for="carNotes">Notes</label><input id="carNotes"></div>
+      <div class="modal-actions">
+        <button type="submit" class="btn btn-gold">Save car</button>
+        <button type="button" class="btn" data-close-modal>Cancel</button>
+      </div>
+      <div class="error-msg" id="addCarError"></div>
+    </form>
+  </div>
+</div>
+
+<!-- Car detail modal -->
+<div class="modal-backdrop hidden" id="carModal">
+  <div class="modal">
+    <button class="close-x" data-close-modal>&times;</button>
+    <h2>Car details</h2>
+    <div id="carModalBody"></div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="assets/stock/config.js"></script>
+<script src="assets/stock/app.js"></script>
+</body>
+</html>
