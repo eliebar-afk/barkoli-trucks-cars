@@ -182,10 +182,13 @@ function runApp() {
       card.dataset.id = car.id;
       const titleParts = [car.make, car.model].filter(Boolean).join(" ");
       const subParts = [car.year, car.vinPlate].filter(Boolean).join(" · ");
+      const dateLabel = car.status === "sold" ? "Sold date" : "Purchase date";
+      const dateValue = car.status === "sold" ? car.soldDate : car.purchaseDate;
       card.innerHTML = `
         <span class="status-pill ${car.status}">${car.status === "sold" ? "Sold" : "In Stock"}</span>
         <h3>${escapeHtml(titleParts || "Unnamed car")}</h3>
         <div class="sub">${escapeHtml(subParts || "—")}</div>
+        <div class="row"><span class="k">${dateLabel}</span><span class="v">${escapeHtml(dateValue || "—")}</span></div>
         <div class="row"><span class="k">Buying price</span><span class="v">${money(car.buyingPrice)}</span></div>
         <div class="row"><span class="k">Total cost</span><span class="v">${money(totalCost)}</span></div>
         ${
