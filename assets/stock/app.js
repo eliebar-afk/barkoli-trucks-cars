@@ -154,6 +154,10 @@ function runApp() {
     let list = cars;
     if (currentTab !== "all") list = cars.filter((c) => c.status === currentTab);
 
+    if (currentTab === "sold") {
+      list = list.slice().sort((a, b) => (b.soldDate || "").localeCompare(a.soldDate || ""));
+    }
+
     grid.innerHTML = "";
     if (list.length === 0) {
       empty.classList.remove("hidden");
