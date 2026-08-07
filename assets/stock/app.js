@@ -127,6 +127,17 @@ function runApp() {
     return Number(car.sellingPrice) - carTotalCost(car);
   }
 
+  function carSortValue(car) {
+    const dateStr = car.status === "sold" && car.soldDate ? car.soldDate : car.purchaseDate;
+    if (dateStr) {
+      const t = new Date(dateStr + "T00:00:00Z").getTime();
+      if (!isNaN(t)) return t;
+    }
+    if (car.createdAt && typeof car.createdAt.toMillis === "function") return car.createdAt.toMillis();
+    if (car.createdAt && typeof car.createdAt.seconds === "number") return car.createdAt.seconds * 1000;
+    return 0;
+  }
+
   // ---------- Rendering ----------
 
   function renderAll() {
@@ -154,9 +165,7 @@ function runApp() {
     let list = cars;
     if (currentTab !== "all") list = cars.filter((c) => c.status === currentTab);
 
-    if (currentTab === "sold") {
-      list = list.slice().sort((a, b) => (b.soldDate || "").localeCompare(a.soldDate || ""));
-    }
+    list = list.slice().sort((a, b) => carSortValue(b) - carSortValue(a));
 
     grid.innerHTML = "";
     if (list.length === 0) {
