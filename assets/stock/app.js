@@ -329,6 +329,7 @@ function runApp() {
         ${
           car.status === "sold"
             ? `<div class="row"><span>Selling price</span><span>${money(car.sellingPrice)}</span></div>
+               ${car.soldDate ? `<div class="row"><span>Sold date</span><span>${escapeHtml(car.soldDate)}</span></div>` : ""}
                <div class="row profit ${profit < 0 ? "neg" : ""}"><span>Profit</span><span>${money(profit)}</span></div>`
             : car.askingPrice != null
             ? `<div class="row"><span>Asking price</span><span>${money(car.askingPrice)}</span></div>
